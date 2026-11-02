@@ -172,3 +172,124 @@ a.card:hover { transform: translateY(-2px); border-color: var(--pink); color: in
 .social { display: flex; gap: 1rem; margin: .75rem 0 .5rem !important; }
 .social a { color: #fff; display: inline-flex; line-height: 0; transition: color .15s, transform .15s; }
 .social a:hover { color: var(--yellow); transform: translateY(-2px); }
+
+/* Brand graphics */
+/* B1: reaching line before small labels */
+.eyebrow { display: flex; align-items: center; gap: .6rem; }
+.eyebrow::before { content: ""; flex: none; width: 40px; height: 10px; background: url("reach-label.svg") center / contain no-repeat; }
+
+/* B2: reaching line under project headings */
+.project-body h2::after { content: ""; display: block; width: 120px; height: 14px; margin-top: .6rem; background: url("reach-under.svg") left center / contain no-repeat; }
+
+/* A1: fan between page sections */
+main section { border-bottom: 0; }
+main section + section:not(.band)::before { content: ""; display: block; width: 120px; height: 64px; margin: -2.25rem auto 1.75rem; background: url("divider-fan.svg") center / contain no-repeat; }
+
+/* A2: rule with ornament between projects */
+.project + .project { border-top: 0; }
+.project + .project::before { content: ""; grid-column: 1 / -1; height: 30px; margin-bottom: 1.25rem;
+  background:
+    url("divider-rule.svg") center / 130px 30px no-repeat,
+    linear-gradient(var(--rule), var(--rule)) left center / calc(50% - 72px) 1px no-repeat,
+    linear-gradient(var(--rule), var(--rule)) right center / calc(50% - 72px) 1px no-repeat; }
+
+/* C1 / C2: leaves in the indigo headers */
+.hero, .page-hero { position: relative; overflow: hidden; }
+.hero .wrap, .page-hero .wrap { position: relative; z-index: 1; }
+.deco-scatter::after, .deco-mark::after { content: ""; position: absolute; top: 0; right: 0; bottom: 0; width: min(45%, 420px); pointer-events: none; background: center right / contain no-repeat; }
+.deco-scatter::after { background-image: url("deco-scatter.svg"); }
+.deco-mark::after { background-image: url("deco-mark.svg"); }
+@media (max-width: 860px) { .deco-scatter::after, .deco-mark::after { width: 38%; } }
+@media (max-width: 640px) { .deco-scatter::after, .deco-mark::after { display: none; } }
+
+/* Graphics round 2 */
+/* C1 varied scatters and C3 garland in the indigo headers */
+.deco-scatter-research::after, .deco-scatter-philosophy::after, .deco-scatter-statement::after, .deco-scatter-community::after {
+  content: ""; position: absolute; top: 0; right: 0; bottom: 0; width: min(45%, 420px); pointer-events: none; background: center right / contain no-repeat; }
+.deco-scatter-research::after { background-image: url("deco-scatter-research.svg"); }
+.deco-scatter-philosophy::after { background-image: url("deco-scatter-philosophy.svg"); }
+.deco-scatter-statement::after { background-image: url("deco-scatter-statement.svg"); }
+.deco-scatter-community::after { background-image: url("deco-scatter-community.svg"); }
+@media (max-width: 860px) { .deco-scatter-research::after, .deco-scatter-philosophy::after, .deco-scatter-statement::after, .deco-scatter-community::after { width: 38%; } }
+@media (max-width: 640px) { .deco-scatter-research::after, .deco-scatter-philosophy::after, .deco-scatter-statement::after, .deco-scatter-community::after { display: none; } }
+
+/* D4: leaves sprouting from the home cards */
+.cards { margin-top: 2.75rem; }
+a.card { position: relative; overflow: visible; }
+.card::before { position: absolute; top: -33px; left: 1.25rem; width: 60px; height: 34px; margin: 0; border-radius: 0; background: url("sprout-pink.svg") center / contain no-repeat; }
+.card:nth-child(2)::before { background: url("sprout-teal.svg") center / contain no-repeat; }
+.card:nth-child(3)::before { background: url("sprout-yellow.svg") center / contain no-repeat; }
+
+/* D3 + D5: big light numbers and a leaf watermark on the philosophy cards */
+.commitment { position: relative; overflow: hidden; }
+.commitment > * { position: relative; z-index: 1; }
+.commitment .num { display: block; width: auto; height: auto; border-radius: 0; background: none; font-weight: 300; font-size: 3rem; line-height: 1; margin-bottom: .6rem; color: var(--pink-ink); }
+.commitment:nth-child(even) .num { color: var(--teal-ink); }
+.commitment::after { content: ""; position: absolute; right: -34px; bottom: -56px; width: 140px; height: 140px; background: url("watermark-pink.svg") center / contain no-repeat; }
+.commitment:nth-child(3n+2)::after { background-image: url("watermark-teal.svg"); }
+.commitment:nth-child(3n)::after { background-image: url("watermark-yellow.svg"); }
+
+/* Philosophy cards: leaves tucked into different corners */
+.commitment:nth-child(1)::after { right: -34px; bottom: -56px; top: auto; left: auto; transform: none; }
+.commitment:nth-child(2)::after { right: -34px; top: -56px; bottom: auto; left: auto; transform: scaleY(-1); }
+.commitment:nth-child(3)::after { left: -48px; bottom: -78px; right: auto; top: auto; transform: scaleX(-1); }
+.commitment:nth-child(4)::after { left: -62px; top: -86px; right: auto; bottom: auto; transform: scale(-1, -1); }
+.commitment:nth-child(5)::after { right: -34px; top: -56px; bottom: auto; left: auto; transform: scaleY(-1); }
+.commitment:nth-child(6)::after { right: -34px; bottom: -56px; top: auto; left: auto; transform: none; }
+
+/* Remove sprouting leaves on home cards */
+.card::before { display: none; }
+.cards { margin-top: 1.5rem; }
+
+/* Falling leaves (home About): a column running down to the divider */
+.about-falling { position: relative; }
+.about-falling > .wrap { position: relative; z-index: 1; }
+.about-falling::after { content: ""; position: absolute; top: 1.5rem; bottom: -2.5rem; width: 400px; z-index: 0;
+  right: max(1.25rem, calc((100% - 68rem) / 2 + 1.25rem)); pointer-events: none;
+  background: url("falling-leaves.svg") right top / 100% 100% no-repeat; }
+@media (max-width: 1000px) { .about-falling::after { display: none; } }
+
+/* Bigger dot in the nav wordmark */
+.wordmark .dot { display: inline-block; width: 4px; height: 4px; border-radius: 50%; background: var(--pink); font-size: 0; vertical-align: middle; margin: 0; position: relative; top: -2.25px; left: -2.1px; }
+
+/* Bigger dot in the home header name */
+.hero h1 .dot { display: inline-block; width: .2em; height: .2em; border-radius: 50%; background: var(--pink); color: transparent; overflow: hidden; vertical-align: middle; position: relative; top: -.13em; left: -.115em; line-height: 0; text-indent: -999px; }
+
+/* About leaves turned off for now. Delete this rule to bring them back. */
+.about-falling::after { display: none !important; }
+
+/* About: photo, numbers, quote band */
+.about-grid { display: grid; grid-template-columns: minmax(0, 40rem) minmax(0, 1fr); gap: 3.5rem; align-items: start; }
+.about-photo { justify-self: center; width: 100%; max-width: 300px; margin-top: 1.5rem; }
+.about-photo .frame { position: relative; aspect-ratio: 1; }
+.about-photo .portrait { position: absolute; inset: 12%; width: 76%; height: 76%; border-radius: 50%; object-fit: cover; }
+.about-photo .photo-leaves { position: absolute; inset: 0; width: 100%; height: 100%; }
+.stats-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; margin-top: 2.5rem; padding-top: 2rem; border-top: 1px solid var(--rule); }
+.stats-row b { display: block; font-weight: 300; font-size: 2.8rem; line-height: 1; }
+.stats-row .pink { color: var(--pink-ink); } .stats-row .teal { color: var(--teal-ink); }
+.stats-row span { display: block; margin-top: .4rem; color: var(--muted); font-size: .92rem; line-height: 1.4; }
+.quote-band .qin { display: flex; align-items: center; gap: 1.5rem; margin: 0; max-width: 52rem; }
+.quote-band .qin img { flex: none; }
+.quote-band blockquote { margin: 0; font-weight: 300; font-size: 1.6rem; line-height: 1.45; }
+@media (max-width: 860px) {
+  .about-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+  .about-photo { max-width: 240px; margin-top: 0; }
+  .stats-row { grid-template-columns: 1fr 1fr; }
+  .quote-band blockquote { font-size: 1.3rem; }
+}
+
+/* Philosophy: roots section with pull quote */
+.roots-grid { display: grid; grid-template-columns: minmax(0, 40rem) minmax(0, 1fr); gap: 3.5rem; align-items: start; }
+.roots-quote { margin-top: 3rem; }
+.roots-quote blockquote { margin: .75rem 0 0; font-weight: 300; font-size: 1.45rem; line-height: 1.45; border-left: 4px solid var(--pink); padding-left: 1.1rem; }
+@media (max-width: 860px) { .roots-grid { grid-template-columns: 1fr; gap: 1.5rem; } .roots-quote { margin-top: 0; } .roots-quote blockquote { font-size: 1.25rem; } }
+
+/* Full statement: pull quotes */
+.pull { float: right; clear: right; width: min(21rem, 30%); max-width: none !important; margin: .25rem 0 1.5rem 2rem; padding-top: .9rem; position: relative; }
+.pull::before { content: ""; position: absolute; top: 0; left: 0; width: 40px; height: 4px; border-radius: 2px; background: var(--pink); }
+.pull-teal::before { background: var(--teal); } .pull-yellow::before { background: var(--yellow); }
+.pull p { margin: 0; font-weight: 300; font-size: 1.35rem; line-height: 1.45; color: var(--ink); }
+@media (max-width: 1000px) { .pull { float: none; width: auto; margin: 1.5rem 0; } .pull p { font-size: 1.2rem; } }
+
+/* Photo ring */
+.about-photo .frame::before { content: ""; position: absolute; inset: 9.5%; border-radius: 50%; border: 3px solid var(--pink); }
