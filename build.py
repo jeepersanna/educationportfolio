@@ -24,8 +24,9 @@ def head(title, desc):
 '''
 
 def header(current):
+    cur = ' aria-current="page"'
     links = "\n".join(
-        f'      <li><a href="{f}"{" aria-current=\"page\"" if f == current else ""}>{n}</a></li>'
+        f'      <li><a href="{f}"{cur if f == current else ""}>{n}</a></li>'
         for f, n in PAGES)
     return f'''<header class="site-header">
   <div class="wrap">
@@ -47,7 +48,14 @@ FOOTER = '''<footer class="site-footer" id="contact">
     <div>
       <h2>Get in touch</h2>
       <!-- EDIT: add the email address you want public, e.g. <p><a href="mailto:you@example.com">you@example.com</a></p> -->
-      <p><a href="https://www.linkedin.com/in/anna-danielson">LinkedIn</a></p>
+      <p class="social">
+        <a href="https://www.linkedin.com/in/anna-danielson" aria-label="LinkedIn">
+          <svg viewBox="0 0 24 24" width="28" height="28" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="3" fill="currentColor"/><circle cx="7.5" cy="7.6" r="1.6" fill="#120C2E"/><rect x="6.1" y="10" width="2.8" height="8" fill="#120C2E"/><path d="M11 10h2.7v1.2c.5-.8 1.5-1.4 2.8-1.4 2.2 0 3 1.4 3 3.7V18h-2.8v-4c0-1.1-.3-1.9-1.4-1.9s-1.6.8-1.6 1.9v4H11z" fill="#120C2E"/></svg>
+        </a>
+        <a href="https://www.instagram.com/annadanielson.sf/" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" width="28" height="28" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.3" cy="6.7" r="1.2" fill="currentColor"/></svg>
+        </a>
+      </p>
       <p class="small">San Francisco, Excelsior and Ingleside</p>
     </div>
     <p class="small">&copy; 2026 Anna Danielson</p>
@@ -57,10 +65,13 @@ FOOTER = '''<footer class="site-footer" id="contact">
 </html>
 '''
 
-for f, _ in PAGES:
+# Pages that aren't in the nav, and which nav item they belong under
+EXTRA = [("philosophy-statement.html", "philosophy.html")]
+
+for f, nav in [(f, f) for f, _ in PAGES] + EXTRA:
     src = (root / "src" / f).read_text()
     m = re.match(r"<!--\s*title:(.*?)\|desc:(.*?)-->\n", src, re.S)
     title, desc = m.group(1).strip(), m.group(2).strip()
     body = src[m.end():]
-    (root / f).write_text(head(title, desc) + header(f) + body + FOOTER)
+    (root / f).write_text(head(title, desc) + header(nav) + body + FOOTER)
 print("built")
