@@ -293,3 +293,31 @@ a.card { position: relative; overflow: visible; }
 
 /* Photo ring */
 .about-photo .frame::before { content: ""; position: absolute; inset: 9.5%; border-radius: 50%; border: 3px solid var(--pink); }
+
+/* Footer: centered sign-off */
+.footer-signoff { position: relative; margin-top: 0; padding: 3.5rem 0 2.5rem; }
+.footer-fan { position: absolute; top: -34px; left: 50%; transform: translateX(-50%); line-height: 0; }
+.site-footer .footer-center { display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; gap: .6rem; }
+.footer-center .footer-mark { width: 72px; height: 72px; }
+.footer-center p { margin: 0; }
+.footer-name { color: var(--cream); font-size: 1rem; }
+.footer-tag { color: var(--teal); font-weight: 500; font-size: .72rem; letter-spacing: .22em; text-transform: uppercase; }
+.footer-center .social { justify-content: center; margin: .4rem 0 !important; }
+
+/* Open to work */
+.open-chip { display: inline-flex; align-items: center; gap: .5rem; padding: .3rem .85rem; border: 1px solid var(--pink); border-radius: 999px; font-weight: 500; font-size: .72rem; letter-spacing: .2em; text-transform: uppercase; color: var(--cream); text-decoration: none; margin-top: .3rem; }
+a.open-chip:hover { color: var(--yellow); }
+.open-chip i { width: 8px; height: 8px; border-radius: 50%; background: var(--teal); box-shadow: 0 0 0 3px rgba(46,196,182,.25); }
+.open-chip.on-light { color: var(--ink); border-color: rgba(18,12,46,.25); margin: 0 0 .5rem; }
+.open-banner { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; flex-wrap: wrap; margin-top: 2rem; background: #DDF5F2; border-radius: 16px; padding: 1.5rem 1.75rem; }
+.open-banner p { margin: 0; font-size: 1.2rem; font-weight: 300; max-width: 34rem; }
+.resume-btn { display: inline-flex; align-items: center; gap: .5rem; padding: .6rem 1.2rem; border-radius: 999px; background: var(--ink); color: var(--cream); font-weight: 500; font-size: .85rem; letter-spacing: .06em; text-decoration: none; }
+.resume-btn:hover { background: var(--pink); color: var(--ink); }
+
+/* Open to work banner: white, no border. */
+.open-banner { background: #FFFFFF; color: var(--ink); border: 1px solid var(--rule); }
+.open-banner .open-chip.on-light { color: var(--ink); border-color: rgba(18,12,46,.25); }
+.open-banner .resume-btn { background: var(--ink); color: var(--cream); }
+.open-banner .resume-btn:hover { background: var(--pink); color: var(--ink); }
+.open-banner { margin-top: 2.5rem; }
+.open-banner .resume-btn:hover { background: var(--teal); color: var(--ink); }
