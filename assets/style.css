@@ -157,3 +157,18 @@ a.card:hover { transform: translateY(-2px); border-color: var(--pink); color: in
 .wrap.prose { max-width: var(--max); }
 .wrap.prose > * { max-width: var(--text); }
 .band .wrap.prose > * { max-width: 48rem; }
+
+/* Philosophy statement */
+.meta-line { color: var(--muted); font-size: .9rem; margin-bottom: 2rem !important; }
+.opening { font-size: 1.25rem; font-weight: 300; line-height: 1.55; }
+.refs h2 { font-size: 1.2rem; }
+.refs p { font-size: .88rem; color: var(--muted); padding-left: 1.5rem; text-indent: -1.5rem; margin-bottom: .6rem; overflow-wrap: anywhere; }
+
+/* Link to full philosophy statement */
+.read-full { margin: 2rem 0 0; font-weight: 500; font-size: .85rem; letter-spacing: .14em; text-transform: uppercase; }
+.read-full span { font-weight: 400; letter-spacing: .04em; text-transform: none; font-size: .95rem; color: var(--muted); margin-left: .75rem; }
+
+/* Social icons (footer) */
+.social { display: flex; gap: 1rem; margin: .75rem 0 .5rem !important; }
+.social a { color: #fff; display: inline-flex; line-height: 0; transition: color .15s, transform .15s; }
+.social a:hover { color: var(--yellow); transform: translateY(-2px); }
