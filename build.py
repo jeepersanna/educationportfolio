@@ -5,6 +5,9 @@ root = pathlib.Path(__file__).parent
 PAGES = [("index.html", "Home"), ("research.html", "Research"),
          ("philosophy.html", "Philosophy"), ("community.html", "Community")]
 
+# Home page only: puts the navy intro screen up before the first paint (first visit per session)
+SPLASH = r'''<script>try{if(/\/(index\.html)?$/.test(location.pathname)&&sessionStorage.getItem('ad-intro')!=='1'&&!matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.classList.add('splash')}catch(e){}</script>'''
+
 def head(title, desc):
     return f'''<!doctype html>
 <html lang="en">
@@ -14,10 +17,10 @@ def head(title, desc):
 <title>{title}</title>
 <meta name="description" content="{desc}">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="preload" href="assets/jost-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="assets/style.css">
+{SPLASH}
+<script src="assets/motion.js" defer></script>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
