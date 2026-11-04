@@ -1,3 +1,12 @@
+/* Jost, served from this site (latin, weights 300-500 in one file) */
+@font-face {
+  font-family: "Jost";
+  font-style: normal;
+  font-weight: 300 500;
+  font-display: swap;
+  src: url("jost-latin.woff2") format("woff2");
+}
+
 /* Anna Danielson: academic site
    Brand: indigo ground, cream daytime, pink / turquoise / yellow accents, Jost */
 
@@ -321,3 +330,76 @@ a.open-chip:hover { color: var(--yellow); }
 .open-banner .resume-btn:hover { background: var(--pink); color: var(--ink); }
 .open-banner { margin-top: 2.5rem; }
 .open-banner .resume-btn:hover { background: var(--teal); color: var(--ink); }
+
+/* Light motion (turned on by assets/motion.js; off for "reduce motion") */
+@keyframes ad-breathe { from { transform: rotate(-4deg) scale(1); } to { transform: rotate(4deg) scale(1.035); } }
+@keyframes ad-sway { from { transform: rotate(-2.5deg); } to { transform: rotate(2.5deg); } }
+@keyframes ad-drift { from { transform: translateY(-5px); } to { transform: translateY(5px); } }
+@keyframes ad-bloom { from { opacity: 0; transform: scale(.6); } to { opacity: 1; transform: scale(1); } }
+
+.motion .hero-mark { animation: ad-breathe 9s ease-in-out infinite alternate; transform-origin: 50% 50%; }
+.motion .about-photo .photo-leaves { translate: 0 var(--ly, 0); animation: ad-sway 7s ease-in-out infinite alternate; transform-origin: 50% 50%; }
+.motion .footer-fan img { animation: ad-sway 6s ease-in-out infinite alternate; transform-origin: 50% 88%; }
+.motion .roots-quote img, .motion .quote-band .qin img { animation: ad-sway 5s ease-in-out infinite alternate; transform-origin: 50% 100%; }
+.motion .hero-mark, .motion .footer-fan img { will-change: transform; }
+
+/* Header leaves drift and parallax */
+.motion .page-hero::after, .motion .hero::after { translate: 0 var(--py, 0); animation: ad-drift 8s ease-in-out infinite alternate; }
+
+/* Philosophy card leaves shift a little as you scroll */
+.motion .commitment::after { translate: 0 var(--cy, 0); }
+
+/* Soft fade-up on scroll */
+.motion .reveal { opacity: 0; transform: translateY(18px); transition: opacity .7s ease, transform .7s ease; }
+.motion .reveal.in { opacity: 1; transform: none; }
+.motion .card.reveal:nth-child(2), .motion .commitment.reveal:nth-child(even), .motion .stats-row > .reveal:nth-child(2) { transition-delay: .08s; }
+.motion .card.reveal:nth-child(3), .motion .stats-row > .reveal:nth-child(3) { transition-delay: .16s; }
+.motion .stats-row > .reveal:nth-child(4) { transition-delay: .24s; }
+
+/* Leaf fan dividers bloom open when their section comes into view */
+.motion main section.watch + section:not(.band)::before { opacity: 0; transform: scale(.6); }
+.motion main section.watch.in + section:not(.band)::before, .motion main section + section.watch.in:not(.band)::before { animation: ad-bloom .8s ease forwards; }
+
+@media (prefers-reduced-motion: reduce) {
+  .motion *, .motion *::before, .motion *::after { animation: none !important; transition: none !important; }
+  .motion .reveal { opacity: 1 !important; transform: none !important; }
+}
+
+/* Hero mark floats a little slower than the page */
+.motion .hero-mark { translate: 0 calc(var(--py, 0px) * 0.4); }
+
+/* Motion round 2: photo leaves wobble inside their SVG; hero mark animates once on entry */
+.motion .about-photo .photo-leaves { animation: none; translate: none; }
+@keyframes ad-enter { from { opacity: 0; transform: rotate(-24deg) scale(.55); } 70% { opacity: 1; transform: rotate(4deg) scale(1.04); } to { opacity: 1; transform: none; } }
+.motion .hero-mark { animation: ad-enter 1.1s cubic-bezier(.3,.7,.3,1) .15s both; translate: none; will-change: auto; }
+
+/* Motion round 3: hero mark builds itself inside its SVG (lines, then leaves) */
+.motion .hero-mark { animation: none; }
+
+/* Print: show everything, even items that haven't faded in yet */
+@media print {
+  .motion .reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
+  .motion *, .motion *::before, .motion *::after { animation: none !important; }
+  .motion main section + section:not(.band)::before { opacity: 1 !important; transform: none !important; }
+}
+
+/* Home intro: navy screen, mark builds and the name rises in under it, both glide to the lockup while the page comes up from below */
+@keyframes ad-letter { from { opacity: 0; transform: translateY(.45em); } to { opacity: 1; transform: none; } }
+@keyframes ad-fade { from { opacity: 0; } to { opacity: 1; } }
+@keyframes ad-fadeup { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+@keyframes ad-splash-fail { to { opacity: 0; visibility: hidden; } }
+html.splash::after { content: ""; position: fixed; inset: 0; background: var(--indigo); z-index: 9998; animation: ad-splash-fail .4s ease 8s forwards; }
+html.rising, html.rising body { background: var(--indigo); }
+html.rising main { background: var(--cream); }
+.splash-mark, .splash-name { position: fixed; z-index: 9999; margin: 0; pointer-events: none; }
+.splash-mark { transform-origin: 50% 50%; }
+.splash-name { white-space: nowrap; transform-origin: 0 0; }
+.splash-name .ch { display: inline-block; animation: ad-letter .45s cubic-bezier(.3,.7,.4,1) both; animation-delay: calc(1.5s + var(--i) * 40ms); }
+.splash .hero::after { opacity: 0; }
+.intro .hero::after { transition: opacity 1s ease .2s; }
+.intro .hero .tagline { animation: ad-fadeup .7s ease 3.9s both; }
+.intro .hero .lead { animation: ad-fadeup .7s ease 4.05s both; }
+.intro .site-header .wrap { animation: ad-fade .8s ease 4.2s both; }
+.intro-done .hero .tagline, .intro-done .hero .lead, .intro-done .site-header .wrap { animation: none !important; }
+@media (prefers-reduced-motion: reduce) { html.splash::after, .splash-mark, .splash-name { display: none; } }
+@media print { html.splash::after, .splash-mark, .splash-name { display: none; } .intro .hero .tagline, .intro .hero .lead, .intro .site-header .wrap { animation: none !important; } }
