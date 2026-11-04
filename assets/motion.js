@@ -43,7 +43,7 @@
       }
     });
     mark.style.visibility = 'hidden';
-    h1.style.visibility = 'hidden';
+    h1.style.opacity = '0'; // stays readable to screen readers during the intro
     document.body.appendChild(cm);
     document.body.appendChild(cn);
 
@@ -86,7 +86,7 @@
       cm.removeAttribute('style'); cm.className = mark.className;
       cm.width = mark.width; cm.height = mark.height; cm.removeAttribute('aria-hidden');
       if (mark.parentNode) mark.parentNode.replaceChild(cm, mark);
-      h1.style.visibility = '';
+      h1.style.opacity = '';
       if (cn.parentNode) cn.parentNode.removeChild(cn);
       off();
       EV.forEach(function (ev) { window.removeEventListener(ev, skip); });

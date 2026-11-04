@@ -464,3 +464,43 @@ html.rising main { background: var(--cream); }
 .filters li:last-child span { color: #CFC8E6; }
 .filter-fig figcaption { margin-top: .9rem; font-size: .88rem; color: var(--muted); text-align: center; }
 @media (max-width: 560px) { .filters li { width: 100% !important; } }
+
+.study .project-body h2 { font-size: 1.5rem; margin: 2.25rem 0 .6rem; }
+.study .project-body h2:first-child { margin-top: 0; }
+
+/* Comparison table */
+.table-wrap { overflow-x: auto; margin: 2rem 0 1rem; }
+.compare { width: 100%; border-collapse: collapse; font-size: .9rem; min-width: 34rem; }
+.compare th, .compare td { text-align: left; vertical-align: top; padding: .6rem .7rem; border-top: 1px solid var(--rule); }
+.compare thead th { border-top: 0; font-weight: 500; border-bottom: 3px solid var(--pink); }
+.compare thead th:nth-child(3) { border-bottom-color: var(--teal); }
+.compare thead th:nth-child(4) { border-bottom-color: var(--yellow); }
+.compare thead th:first-child { border-bottom: 1px solid var(--rule); }
+.compare tbody th { font-weight: 500; font-size: .72rem; letter-spacing: .12em; text-transform: uppercase; width: 8.5rem; }
+.compare td { color: var(--muted); }
+
+/* Writing */
+.writing-group + .writing-group { margin-top: 3rem; }
+.writing-group .cards { margin-top: 1rem; }
+.card .kind { font-size: .72rem; letter-spacing: .14em; text-transform: uppercase; color: var(--teal-ink); font-weight: 500; margin: 0 0 .5rem; }
+.piece-title { text-transform: none !important; letter-spacing: .02em !important; line-height: 1.2; max-width: 48rem; }
+.page-hero .eyebrow.on-dark { color: var(--teal); }
+.reading { max-width: 42rem; margin: 0 auto; font-size: 1.1rem; line-height: 1.75; }
+.reading p { margin: 0 0 1.25rem; }
+.reading h3 { font-size: 1.05rem; font-weight: 500; margin: 2.5rem 0 .75rem; }
+.reading blockquote { margin: 1.5rem 0; padding-left: 1.1rem; border-left: 4px solid var(--pink); font-weight: 300; font-size: 1.2rem; }
+.reading .refs { font-size: .92rem; color: var(--muted); }
+.reading .refs li { padding-left: 2rem; text-indent: -2rem; margin-bottom: .5rem; }
+.reading .refs li::before { display: none; }
+
+.page-hero p.eyebrow.on-dark { font-size: .75rem; letter-spacing: .18em; margin: 0 0 .9rem; }
+.reading ul.refs li { position: static; padding-left: 2rem !important; text-indent: -2rem; }
+.reading ul.refs li::before { content: none !important; display: none !important; }
+.reading ul.refs { list-style: none; padding-left: 0; }
+
+h2.eyebrow { font-family: inherit; line-height: inherit; }
+.writing-group h2.eyebrow, .skills-strip h2.eyebrow { font-size: .75rem; font-weight: 500; letter-spacing: .22em; margin: 0 0 .5rem; }
+
+/* Accessibility pass */
+.project-body { min-width: 0; }
+.read-full a, .project-body > p > a:only-child { display: inline-block; padding: .3rem 0; }
