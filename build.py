@@ -8,7 +8,10 @@ PAGES = [("index.html", "Home"), ("research.html", "Research"),
 # Home page only: puts the navy intro screen up before the first paint (first visit per session)
 SPLASH = r'''<script>try{if(/\/(index\.html)?$/.test(location.pathname)&&sessionStorage.getItem('ad-intro')!=='1'&&!matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.classList.add('splash')}catch(e){}</script>'''
 
-def head(title, desc):
+SITE = "https://annadanielson.site/"
+
+def head(title, desc, f="index.html", extra=""):
+    url = SITE + ("" if f == "index.html" else f)
     return f'''<!doctype html>
 <html lang="en">
 <head>
@@ -17,6 +20,16 @@ def head(title, desc):
 <title>{title}</title>
 <meta name="description" content="{desc}">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+{extra}<meta property="og:type" content="website">
+<meta property="og:site_name" content="Anna Danielson">
+<meta property="og:title" content="{title}">
+<meta property="og:description" content="{desc}">
+<meta property="og:url" content="{url}">
+<meta property="og:image" content="{SITE}assets/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Anna Danielson: Sociology, Child Development, Education">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="preload" href="assets/jost-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="assets/style.css">
 {SPLASH}
@@ -72,12 +85,13 @@ FOOTER = '''<footer class="site-footer footer-signoff" id="contact">
 '''
 
 # Pages that aren't in the nav, and which nav item they belong under
-EXTRA = [("philosophy-statement.html", "philosophy.html")]
+EXTRA = [("philosophy-statement.html", "philosophy.html"), ("teaching.html", ""), ("404.html", "")]  # teaching: not linked yet
 
 for f, nav in [(f, f) for f, _ in PAGES] + EXTRA:
     src = (root / "src" / f).read_text()
     m = re.match(r"<!--\s*title:(.*?)\|desc:(.*?)-->\n", src, re.S)
     title, desc = m.group(1).strip(), m.group(2).strip()
     body = src[m.end():]
-    (root / f).write_text(head(title, desc) + header(nav) + body + FOOTER)
+    extra = '<base href="/">\n<meta name="robots" content="noindex">\n' if f == "404.html" else ""
+    (root / f).write_text(head(title, desc, f, extra) + header(nav) + body + FOOTER)
 print("built")
