@@ -403,3 +403,64 @@ html.rising main { background: var(--cream); }
 .intro-done .hero .tagline, .intro-done .hero .lead, .intro-done .site-header .wrap { animation: none !important; }
 @media (prefers-reduced-motion: reduce) { html.splash::after, .splash-mark, .splash-name { display: none; } }
 @media print { html.splash::after, .splash-mark, .splash-name { display: none; } .intro .hero .tagline, .intro .hero .lead, .intro .site-header .wrap { animation: none !important; } }
+
+/* What I believe strip */
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.beliefs { padding-bottom: 1rem; }
+.belief-list { list-style: none; margin: 1.25rem 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+.belief-list li { display: flex; gap: .9rem; align-items: flex-start; padding-top: 1.1rem; border-top: 1px solid var(--rule); }
+.belief-list .b-leaf { flex: none; margin-top: .3rem; }
+.belief-list p { margin: 0; font-weight: 300; font-size: 1.35rem; line-height: 1.4; }
+.beliefs .read-full { margin-top: 1.75rem; }
+.beliefs .read-full a { text-decoration: none; }
+.beliefs .read-full a:hover { color: var(--teal-ink); }
+@media (max-width: 860px) { .belief-list { grid-template-columns: 1fr; gap: 1.1rem; } .belief-list p { font-size: 1.2rem; } }
+
+/* Semester column extras */
+.side-block { margin-top: 2.75rem; }
+.side-block .eyebrow { margin-bottom: .9rem; }
+.path { list-style: none; margin: 0; padding: 0; position: relative; }
+.path::before { content: ""; position: absolute; left: 5px; top: .55rem; bottom: .9rem; width: 2px; background: var(--rule); }
+.path li { position: relative; padding: 0 0 1.1rem 1.75rem; }
+.path li::before { content: ""; position: absolute; left: 0; top: .4rem; width: 12px; height: 12px; border-radius: 50%; background: var(--cream); border: 2px solid var(--teal); box-sizing: border-box; }
+.path li.here::before { background: var(--pink); border-color: var(--pink); }
+.path li:last-child::before { border-color: var(--yellow); background: var(--yellow); }
+.path strong, .langs strong { display: block; font-weight: 500; }
+.path span, .langs span { display: block; color: var(--muted); font-size: .95rem; margin-top: .1rem; }
+.langs { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+.langs li { border-top: 2px solid var(--teal); padding-top: .6rem; }
+.langs li:nth-child(2) { border-color: var(--pink); }
+.langs li:nth-child(3) { border-color: var(--yellow); }
+.tags { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: .5rem; }
+.tags li { font-size: .88rem; padding: .35rem .8rem; border: 1px solid var(--rule); border-radius: 999px; background: #fff; }
+@media (max-width: 560px) { .langs { grid-template-columns: 1fr; } }
+
+.skills-strip { padding-bottom: .5rem; }
+.skills-strip + section::before { display: none !important; }
+
+.skill-groups { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: .25rem; }
+.skill-groups > div { border-top: 3px solid var(--pink); padding-top: .8rem; }
+.skill-groups .sg-teal { border-color: var(--teal); }
+.skill-groups .sg-yellow { border-color: var(--yellow); }
+.skill-groups h3 { font-size: 1rem; font-weight: 500; margin: 0 0 .4rem; }
+.skill-groups ul { list-style: none; margin: 0; padding: 0; }
+.skill-groups li { padding: .25rem 0; color: var(--muted); }
+@media (max-width: 760px) { .skill-groups { grid-template-columns: 1fr; gap: 1.5rem; } }
+
+/* Who gets a say: filter figure */
+.project-body .sub { margin-top: -.25rem; color: var(--muted); font-size: 1.05rem; }
+.project-body h3 { font-size: 1.05rem; font-weight: 500; margin: 1.5rem 0 .5rem; }
+.filter-fig { margin: 2rem 0 1.5rem; }
+.filters { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; align-items: center; gap: 4px; }
+.filters li { width: var(--w); box-sizing: border-box; text-align: center; padding: .6rem .9rem; border-radius: 6px; background: #E3F6F3; }
+.filters li:nth-child(2) { background: #D2F0EC; }
+.filters li:nth-child(3) { background: #FFE0EE; }
+.filters li:nth-child(4) { background: #FFD1E5; }
+.filters li:nth-child(5) { background: #FFF2C4; }
+.filters li:nth-child(6) { background: #FFEAA0; }
+.filters li:last-child { background: var(--ink); color: var(--cream); }
+.filters strong { display: block; font-weight: 500; font-size: .95rem; }
+.filters span { display: block; font-size: .82rem; line-height: 1.35; color: var(--muted); margin-top: .1rem; }
+.filters li:last-child span { color: #CFC8E6; }
+.filter-fig figcaption { margin-top: .9rem; font-size: .88rem; color: var(--muted); text-align: center; }
+@media (max-width: 560px) { .filters li { width: 100% !important; } }
