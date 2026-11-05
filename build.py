@@ -10,8 +10,15 @@ SPLASH = r'''<script>try{if(/\/(index\.html)?$/.test(location.pathname)&&session
 
 SITE = "https://annadanielson.site/"
 
+# Pages with their own link-preview card (others use the main one)
+OG_IMG = {"who-gets-a-say.html": "og/og-who-gets-a-say.png", "third-places.html": "og/og-common-ground.png",
+          "philosophy.html": "og/og-philosophy.png", "philosophy-statement.html": "og/og-philosophy.png",
+          "writing.html": "og/og-writing.png", "writing-udhr.html": "og/og-writing-udhr.png"}
+
 def head(title, desc, f="index.html", extra=""):
     url = SITE + ("" if f == "index.html" else f)
+    img = OG_IMG.get(f, "og/og-home.png")
+    alt = (title.split(" | ")[0] + " | Anna Danielson") if f in OG_IMG else "Anna Danielson: Sociology, Child Development, Education"
     return f'''<!doctype html>
 <html lang="en">
 <head>
@@ -25,10 +32,10 @@ def head(title, desc, f="index.html", extra=""):
 <meta property="og:title" content="{title}">
 <meta property="og:description" content="{desc}">
 <meta property="og:url" content="{url}">
-<meta property="og:image" content="{SITE}assets/og-image.png">
+<meta property="og:image" content="{SITE}assets/{img}">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Anna Danielson: Sociology, Child Development, Education">
+<meta property="og:image:alt" content="{alt}">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preload" href="assets/jost-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="assets/style.css">
