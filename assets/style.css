@@ -397,9 +397,9 @@ html.rising main { background: var(--cream); }
 .splash-name .ch { display: inline-block; animation: ad-letter .45s cubic-bezier(.3,.7,.4,1) both; animation-delay: calc(1.5s + var(--i) * 40ms); }
 .splash .hero::after { opacity: 0; }
 .intro .hero::after { transition: opacity 1s ease .2s; }
-.intro .hero .tagline { animation: ad-fadeup .7s ease 3.9s both; }
-.intro .hero .lead { animation: ad-fadeup .7s ease 4.05s both; }
-.intro .site-header .wrap { animation: ad-fade .8s ease 4.2s both; }
+.intro .hero .tagline { animation: ad-fadeup .7s ease 3.25s both; }
+.intro .hero .lead { animation: ad-fadeup .7s ease 3.4s both; }
+.intro .site-header .wrap { animation: ad-fade .8s ease 3.55s both; }
 .intro-done .hero .tagline, .intro-done .hero .lead, .intro-done .site-header .wrap { animation: none !important; }
 @media (prefers-reduced-motion: reduce) { html.splash::after, .splash-mark, .splash-name { display: none; } }
 @media print { html.splash::after, .splash-mark, .splash-name { display: none; } .intro .hero .tagline, .intro .hero .lead, .intro .site-header .wrap { animation: none !important; } }
@@ -504,3 +504,18 @@ h2.eyebrow { font-family: inherit; line-height: inherit; }
 /* Accessibility pass */
 .project-body { min-width: 0; }
 .read-full a, .project-body > p > a:only-child { display: inline-block; padding: .3rem 0; }
+
+/* Community photos */
+.photo-strip { display: grid; grid-template-columns: repeat(3, 1fr); gap: .75rem; margin: 1.75rem 0 0; }
+.photo-strip figure, .photo-single { margin: 0; }
+.photo-strip img { width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 8px; display: block; }
+.photo-single { margin-top: 1.75rem; max-width: 34rem; }
+.photo-single img { width: 100%; height: auto; border-radius: 8px; display: block; }
+.photo-strip figcaption, .photo-single figcaption { font-size: .8rem; color: var(--muted); margin-top: .35rem; }
+@media (max-width: 640px) { .photo-strip { grid-template-columns: repeat(2, 1fr); } }
+.photo-strip.two { grid-template-columns: repeat(2, 1fr); }
+.photo-strip.two img { aspect-ratio: 3 / 2; }
+.photo-strip.bw-row { max-width: 34rem; margin-top: .75rem; }
+.photo-strip.bw-row img { aspect-ratio: 3 / 4; }
+@media (max-width: 640px) { .photo-strip.bw-row { grid-template-columns: repeat(3, 1fr); } }
+.langs-note { margin: 1rem 0 0; max-width: 32rem; line-height: 1.6; color: var(--muted); font-size: .95rem; }

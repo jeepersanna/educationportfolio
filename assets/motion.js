@@ -106,7 +106,7 @@
       var a = cm.animate([{ transform: t[0] }, { transform: 'none' }], { duration: 900, easing: ease, fill: 'forwards' });
       anims.push(a);
       anims[0].onfinish = finish;
-    }, 3200);
+    }, 2550);
     // any tap, key, or scroll skips the intro
     var EV = ['pointerdown', 'keydown', 'wheel', 'touchstart', 'scroll'];
     EV.forEach(function (ev) { window.addEventListener(ev, skip, { passive: true }); });
