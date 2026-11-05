@@ -85,7 +85,7 @@ FOOTER = '''<footer class="site-footer footer-signoff" id="contact">
 '''
 
 # Pages that aren't in the nav, and which nav item they belong under
-EXTRA = [("philosophy-statement.html", "philosophy.html"), ("teaching.html", ""), ("404.html", "")]  # teaching: not linked yet
+EXTRA = [("philosophy-statement.html", "philosophy.html"), ("teaching.html", ""), ("404.html", ""), ("who-gets-a-say.html", "research.html"), ("third-places.html", "research.html"), ("writing.html", ""), ("writing-school-culture.html", ""), ("writing-du-bois.html", ""), ("writing-udhr.html", ""), ("writing-counterstories.html", ""), ("writing-addams.html", ""), ("writing-constrained-choice.html", ""), ("writing-peace.html", "")]  # teaching: not linked yet
 
 for f, nav in [(f, f) for f, _ in PAGES] + EXTRA:
     src = (root / "src" / f).read_text()
