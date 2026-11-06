@@ -374,7 +374,55 @@ html.ls-on { overflow: hidden; }
     c.fillStyle = C.yellow; c.beginPath(); c.arc(mx, my, 6 * S, 0, 6.29); c.fill();
     ctx = keep;
   }
-  window.addEventListener('resize', function () { if (markCv) settleMark(); });
+  window.addEventListener('resize', function () { if (markCv && !quiet) settleMark(); });
+  // the small, low-key build for the lockup on repeat visits: lamp blinks on, lines and leaves come in, the name settles, the tagline follows (~1.5s)
+  var quiet = false;
+  function quietBuild() {
+    var LO = [3, 0, 4, 1, 5, 2], LFO = [2, 5, 0, 3, 1, 4], orig = h1El.innerHTML, letters = [];
+    Array.prototype.slice.call(h1El.childNodes).forEach(function (n) {
+      if (n.nodeType === 3) {
+        var frag = document.createDocumentFragment();
+        n.textContent.split('').forEach(function (ch) {
+          if (/\s/.test(ch)) { frag.appendChild(document.createTextNode(ch)); return; }
+          var s = document.createElement('span'); s.textContent = ch; s.style.display = 'inline-block'; s.style.opacity = '0'; letters.push(s); frag.appendChild(s);
+        });
+        h1El.replaceChild(frag, n);
+      } else if (n.nodeType === 1) { n.style.opacity = '0'; letters.push(n); }
+    });
+    tagP.style.opacity = '0';
+    quiet = true; settleMark(); // places the canvas and hides the image
+    var t0 = null;
+    function frame(ts) {
+      if (!t0) t0 = ts;
+      var t = (ts - t0) / 1000, c = markCv.getContext('2d');
+      var w = parseFloat(markCv.style.width), h = parseFloat(markCv.style.height), S = markImg.getBoundingClientRect().width / 120, mx = w / 2, my = h / 2;
+      var keep = ctx; ctx = c; c.clearRect(0, 0, w, h);
+      var lamp = seg(t, .05, .3) * (1 - seg(t, .8, 1.3));
+      if (lamp > 0) { var g = c.createRadialGradient(mx, my, 0, mx, my, 64 * S); g.addColorStop(0, 'rgba(255,210,63,' + (.22 * lamp) + ')'); g.addColorStop(1, 'rgba(255,210,63,0)'); c.fillStyle = g; c.fillRect(0, 0, w, h); }
+      for (var k = 0; k < 6; k++) {
+        var st = .45 + LFO.indexOf(k) * .06, p = E.back(seg(t, st, st + .35)); if (p <= 0) continue;
+        var tr = (k * 60) * Math.PI / 180, dx = Math.sin(tr), dy = -Math.cos(tr), x = mx + dx * 16 * S, y = my + dy * 16 * S, sc = k % 2 ? .9 : 1.25, settle = seg(t, st + .25, st + .6);
+        for (var j = 3; j >= 1; j--) {
+          var push = S * (3 + 3 * j) * .6 * settle;
+          c.save(); c.globalAlpha = .045 * settle; c.translate(x + dx * push, y + dy * push); c.rotate(tr); c.scale(sc * S, sc * S * (1 + push / (40 * S))); leafPath(c); c.fillStyle = C.indigo; c.fill(); c.restore();
+        }
+        drawLeaf(x, y, tr, sc * p, k % 2 ? C.teal : C.pink, 1, S, .3 * settle, mx, my);
+      }
+      c.strokeStyle = C.cream; c.lineWidth = Math.max(1, S * 1.05); c.lineCap = 'round';
+      LINE_A.forEach(function (ang, i) {
+        var st = .1 + LO[i] * .07, p = E.out(seg(t, st, st + .3)); if (p <= 0) return;
+        c.beginPath(); c.moveTo(mx, my); c.lineTo(mx + Math.cos(ang) * 46 * S * p, my + Math.sin(ang) * 46 * S * p); c.stroke();
+        var tp = E.back(seg(t, st + .24, st + .46)); if (tp > 0) { c.fillStyle = C.cream; c.beginPath(); c.arc(mx + Math.cos(ang) * 46 * S, my + Math.sin(ang) * 46 * S, 2.4 * S * tp, 0, 6.29); c.fill(); }
+      });
+      var hp = E.back(seg(t, 0, .3)); if (hp > 0) { c.fillStyle = C.yellow; c.beginPath(); c.arc(mx, my, 6 * S * hp, 0, 6.29); c.fill(); }
+      ctx = keep;
+      letters.forEach(function (s, i) { var lp = E.out(seg(t, .4 + i * .03, .75 + i * .03)); s.style.opacity = lp.toFixed(3); s.style.transform = 'translateY(' + (4 * (1 - lp)).toFixed(2) + 'px)'; });
+      tagP.style.opacity = seg(t, .85, 1.25).toFixed(3);
+      if (t < 1.5) requestAnimationFrame(frame);
+      else { h1El.innerHTML = orig; tagP.style.opacity = ''; quiet = false; settleMark(); }
+    }
+    requestAnimationFrame(frame);
+  }
 
   // ---------- run
   var last = 0, tNow = 0, raf = 0, done = false, EV = ['pointerdown', 'keydown', 'wheel', 'touchstart', 'scroll'];
@@ -397,9 +445,9 @@ html.ls-on { overflow: hidden; }
   function skip() { if (tNow < END) { tNow = END; } }
   function onResize() { size(); }
   if (!playing) {
-    // repeat visit: no intro, but the mark on the page still settles into its lit, shadowed self once its own animation is done
+    // repeat visit: no intro; the lockup builds itself quietly in place instead
     root.classList.remove('splash');
-    setTimeout(settleMark, 1800);
+    quietBuild();
     return;
   }
   build(); buildName(); size();
