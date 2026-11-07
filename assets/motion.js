@@ -43,7 +43,7 @@ html.ls-on { overflow: hidden; }
   var END = 7.15, WAVES = true;
   var seen = false;
   // the intro plays on a visitor's first load only; every load after that gets the quiet build
-  try { seen = localStorage.getItem('ad-intro-seen') === '1' || sessionStorage.getItem('ad-intro') === '1'; localStorage.setItem('ad-intro-seen', '1'); sessionStorage.setItem('ad-intro', '1'); } catch (e) {}
+  try { seen = sessionStorage.getItem('ad-intro') === '1'; sessionStorage.setItem('ad-intro', '1'); } catch (e) {}  // plays once per visit: again in a new tab or after the browser is closed, not when returning to Home mid-visit
   var playing = !seen && (window.scrollY || 0) <= 40;
   var ls, sky, cv, ctx, nameEl, tagEl, blobs, corner, hint;
   if (playing) {
