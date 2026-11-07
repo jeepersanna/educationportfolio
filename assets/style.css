@@ -1190,3 +1190,4 @@ main > section[aria-labelledby=refs] > .wrap { border-top: 1px solid var(--rule)
 .work-open .email-btn svg { color: var(--teal); }
 .work-open .email-btn:hover { background: var(--teal); color: var(--indigo); border-color: var(--teal); }
 .work-open .email-btn:hover svg { color: var(--indigo); }
+.work-open .open-chip.on-light { border-color: var(--pink); }
