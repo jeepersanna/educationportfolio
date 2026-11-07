@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Intro experiment 3: Gathering</title>
+<!-- Standalone preview. Not linked from the site. Open it in a browser from your site folder. -->
+<style>
+@font-face { font-family: "Jost"; src: url("assets/jost-latin.woff2") format("woff2"); font-weight: 300 500; font-display: block; }
+html, body { margin: 0; height: 100%; background: #120C2E; overflow: hidden; font-family: "Jost", system-ui, sans-serif; }
+canvas { position: fixed; inset: 0; width: 100%; height: 100%; display: block; }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+.controls { position: fixed; right: 18px; bottom: 18px; display: flex; gap: 8px; opacity: 0; transition: opacity .5s; }
+.controls.on { opacity: 1; }
+.controls button { font: 500 .75rem/1 "Jost", system-ui, sans-serif; letter-spacing: .18em; text-transform: uppercase; color: #120C2E; background: transparent; border: 1.5px solid #120C2E; border-radius: 999px; padding: .7em 1.2em; cursor: pointer; }
+.controls button:hover { background: #FFD23F; border-color: #FFD23F; }
+.hint { position: fixed; left: 50%; bottom: 18px; transform: translateX(-50%); font: 500 .65rem/1 "Jost", sans-serif; letter-spacing: .2em; text-transform: uppercase; color: rgba(251,244,232,.3); transition: opacity .4s; }
+</style>
+</head>
+<body>
+<h1 class="sr">Anna Danielson</h1>
+<p class="sr">Sociology, Child Development, Education</p>
+<canvas aria-hidden="true"></canvas>
+<div class="hint">click to skip</div>
+<div class="controls"><button type="button" id="replay">Replay</button><button type="button" id="slow">Slow-mo</button></div>
+<script>
+(function () {
+  var cv = document.querySelector('canvas'), ctx = cv.getContext('2d');
+  var controls = document.querySelector('.controls'), hint = document.querySelector('.hint');
+  var C = { pink: '#FF4F9A', teal: '#2EC4B6', yellow: '#FFD23F', cream: '#FBF4E8', indigo: '#120C2E' };
+  var END = 5.4;
+  var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function cl(x, a, b) { return Math.max(a === undefined ? 0 : a, Math.min(b === undefined ? 1 : b, x)); }
+  function seg(t, a, b) { return cl((t - a) / (b - a)); }
+  function lerp(a, b, p) { return a + (b - a) * p; }
+  var E = {
+    out: function (t) { return 1 - Math.pow(1 - t, 3); },
+    inOut: function (t) { return t < .5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2; },
+    sine: function (t) { return -(Math.cos(Math.PI * t) - 1) / 2; }
+  };
+  var seed = 3; function rnd() { seed = (seed * 16807) % 2147483647; return (seed - 1) / 2147483646; }
+
+  // glowing dot sprites, one per color (much cheaper than shadowBlur on every dot)
+  var SPR = {};
+  function sprite(color) {
+    var s = document.createElement('canvas'), n = 32; s.width = s.height = n;
+    var g = s.getContext('2d'), gr = g.createRadialGradient(n / 2, n / 2, 0, n / 2, n / 2, n / 2);
+    gr.addColorStop(0, color); gr.addColorStop(.22, color); gr.addColorStop(.35, color + '66'); gr.addColorStop(1, color + '00');
+    g.fillStyle = gr; g.fillRect(0, 0, n, n); return s;
+  }
+  [C.pink, C.teal, C.yellow, C.cream].forEach(function (c) { SPR[c] = sprite(c); });
+  function dot(x, y, r, color, a) { if (a <= 0) return; ctx.globalAlpha = a; var d = r * 4.4; ctx.drawImage(SPR[color], x - d / 2, y - d / 2, d, d); }
+
+  // ---------- the mark and name as vector drawings
+  var LINE_A = [-60, 0, 60, 120, 180, 240].map(function (d) { return d * Math.PI / 180; });
+  function drawMark(c, mx, my, S) {
+    c.save(); c.translate(mx, my);
+    c.strokeStyle = C.cream; c.lineWidth = Math.max(1, S * 1.05); c.lineCap = 'round';
+    LINE_A.forEach(function (a) { c.beginPath(); c.moveTo(0, 0); c.lineTo(Math.cos(a) * 46 * S, Math.sin(a) * 46 * S); c.stroke(); });
+    for (var k = 0; k < 6; k++) {
+      var sc = k % 2 ? .9 : 1.25;
+      c.save(); c.rotate(k * Math.PI / 3); c.translate(0, -16 * S); c.scale(sc * S, sc * S);
+      c.beginPath(); c.moveTo(0, 0); c.bezierCurveTo(-8, -8, -8, -22, 0, -30); c.bezierCurveTo(8, -22, 8, -8, 0, 0); c.closePath();
+      c.fillStyle = k % 2 ? C.teal : C.pink; c.fill();
+      c.beginPath(); c.moveTo(0, -3); c.lineTo(0, -26); c.lineWidth = 1.3; c.strokeStyle = C.indigo; c.stroke();
+      c.restore();
+    }
+    c.fillStyle = C.cream;
+    LINE_A.forEach(function (a) { c.beginPath(); c.arc(Math.cos(a) * 46 * S, Math.sin(a) * 46 * S, 2.4 * S, 0, 6.29); c.fill(); });
+    c.fillStyle = C.yellow; c.beginPath(); c.arc(0, 0, 6 * S, 0, 6.29); c.fill();
+    c.restore();
+  }
+  var NAME_L = 'ANNA', NAME_R = 'DANIELSON', TAG = 'SOCIOLOGY  •  CHILD DEVELOPMENT  •  EDUCATION';
+  function textRun(c, str, x, y, px, sp) { for (var i = 0; i < str.length; i++) { c.fillText(str[i], x, y); x += c.measureText(str[i]).width + px * sp; } return x; }
+  function nameWidth(c, px) {
+    c.font = '300 ' + px + 'px Jost'; var w = 0, sp = .28 * px;
+    (NAME_L + NAME_R).split('').forEach(function (ch) { w += c.measureText(ch).width + sp; });
+    return w + px * .7 - sp; // room for the dot, minus trailing spacing
+  }
+  function drawName(c, x, y, px, a) {
+    if (a <= 0) return;
+    c.save(); c.globalAlpha = a; c.font = '300 ' + px + 'px Jost'; c.fillStyle = C.cream; c.textBaseline = 'alphabetic';
+    var x2 = textRun(c, NAME_L, x, y, px, .28);
+    c.fillStyle = C.pink; c.beginPath(); c.arc(x2 + px * .2, y - px * .36, px * .1, 0, 6.29); c.fill();
+    c.fillStyle = C.cream; textRun(c, NAME_R, x2 + px * .7, y, px, .28);
+    c.restore();
+  }
+  function drawTag(c, x, y, px, a) {
+    if (a <= 0) return;
+    c.save(); c.globalAlpha = a; c.font = '500 ' + px + 'px Jost'; c.fillStyle = C.teal; textRun(c, TAG, x, y, px, .24); c.restore();
+  }
+
+  // ---------- layout + sampling the final picture into dots
+  var W, H, DPR, L = {}, gather = [], amb = [], row = [];
+  function layout() {
+    DPR = Math.min(2, window.devicePixelRatio || 1); W = innerWidth; H = innerHeight;
+    cv.width = W * DPR; cv.height = H * DPR; ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+    var phone = W < 700, big = Math.min(W, H) * (phone ? .52 : .4);
+    L.phone = phone; L.S0 = big / 120; L.cx = W / 2; L.cy = H * .41;
+    L.f0 = Math.round(cl(W * .04, 24, 42)); L.nw0 = nameWidth(ctx, L.f0);
+    if (L.nw0 > W * .9) { L.f0 = Math.floor(L.f0 * W * .9 / L.nw0); L.nw0 = nameWidth(ctx, L.f0); }
+    L.n0x = (W - L.nw0) / 2; L.n0y = L.cy + big / 2 + L.f0 * 1.6;
+    L.tp = Math.max(9, Math.round(L.f0 * .3)); ctx.font = '500 ' + L.tp + 'px Jost';
+    L.tw = 0; TAG.split('').forEach(function (ch) { L.tw += ctx.measureText(ch).width + L.tp * .24; });
+    L.t0x = (W - L.tw) / 2; L.t0y = L.n0y + L.f0 * .95;
+    L.HH = Math.max(phone ? 360 : 330, H * (phone ? .5 : .46));
+    var pad = Math.max(24, (W - 1100) / 2 + 24), fm = phone ? 104 : 168;
+    L.Sf = fm / 120; L.f1 = phone ? Math.min(L.f0, 26) : Math.min(L.f0, 34); L.k1 = L.f1 / L.f0;
+    if (phone) { L.fx = pad + fm / 2; L.fy = L.HH * .33; L.nfx = pad; L.nfy = L.fy + fm / 2 + L.f1 * 1.5; }
+    else { L.fx = pad + fm / 2; L.fy = L.HH / 2; L.nfx = pad + fm + 40; L.nfy = L.fy + L.f1 * .1; }
+    L.tfx = L.nfx; L.tfy = L.nfy + L.f1 * .95;
+    sample();
+  }
+  function sample() {
+    // draw the finished composition off-screen, then turn its pixels into dot targets
+    var oc = document.createElement('canvas'); oc.width = W; oc.height = H;
+    var o = oc.getContext('2d');
+    drawMark(o, L.cx, L.cy, L.S0); drawName(o, L.n0x, L.n0y, L.f0, 1);
+    var data = o.getImageData(0, 0, W, H).data, step = L.phone ? 3 : 4;
+    seed = 3; gather = [];
+    var markR = 60 * L.S0;
+    for (var y = 0; y < H; y += step) for (var x = 0; x < W; x += step) {
+      var i = (y * W + x) * 4; if (data[i + 3] < 140) continue;
+      var r = data[i], g = data[i + 1], b = data[i + 2];
+      if (r + g + b < 200) continue; // skip the dark midribs
+      var col = r > 240 && g > 180 && b < 120 ? C.yellow : r > 220 && g < 140 ? C.pink : r < 120 && g > 150 ? C.teal : C.cream;
+      var dx = x - L.cx, dy = y - L.cy, inMark = Math.hypot(dx, dy) < markR;
+      var rr = Math.hypot(dx, dy);
+      // when each dot sets off: center first, then outward through the mark, then the name left to right
+      var delay = inMark ? (rr / markR) * .55 : .75 + ((x - L.n0x) / L.nw0) * .35;
+      var sx = rnd() * W * 1.2 - W * .1, sy = rnd() * H * 1.2 - H * .1;
+      gather.push({ tx: x + (rnd() - .5) * .8, ty: y + (rnd() - .5) * .8, sx: sx, sy: sy, ph: rnd() * 6.28, c: col,
+        st: .55 + delay + rnd() * .3, du: 1.0 + rnd() * .35, sw: (1.6 + rnd() * 1.2) * (rnd() < .5 ? 1 : 1), r: (L.phone ? 1.2 : 1.55) + rnd() * .5 });
+    }
+    // free-floating dots that stay after the gathering
+    amb = []; row = [];
+    var N = L.phone ? 150 : 260;
+    for (var a = 0; a < N; a++) {
+      var cc = rnd(), colA = cc < .55 ? C.yellow : cc < .75 ? C.cream : cc < .88 ? C.pink : C.teal;
+      amb.push({ x: rnd() * W, y: rnd() * H, sp: 6 + rnd() * 22, ph: rnd() * 6.28, r: 1 + rnd() * 2.2, c: colA, tw: 1.5 + rnd() * 2.5 });
+    }
+    // the dots that settle into a line at the bottom of the header
+    var RN = Math.round(W / (L.phone ? 14 : 16));
+    for (var q = 0; q < RN; q++) row.push({ x: (q + .5) * W / RN, sx: rnd() * W, sy: L.HH + rnd() * (H - L.HH), c: [C.pink, C.teal, C.yellow][q % 3], st: 3.85 + rnd() * .45, ph: rnd() * 6.28 });
+  }
+
+  // ---------- frame
+  function frame(t) {
+    ctx.globalAlpha = 1; ctx.fillStyle = C.indigo; ctx.fillRect(0, 0, W, H);
+    var mv = E.inOut(seg(t, 3.75, 4.65));
+    var mx = lerp(L.cx, L.fx, mv), my = lerp(L.cy, L.fy, mv), S = lerp(L.S0, L.Sf, mv);
+
+    // a soft light that gathers where the dots gather
+    var gl = seg(t, .6, 2.6) * (1 - mv * .6);
+    if (gl > 0) {
+      var g = ctx.createRadialGradient(mx, my, 0, mx, my, Math.min(W, H) * .6);
+      g.addColorStop(0, 'rgba(46,196,182,' + (.16 * gl) + ')'); g.addColorStop(.45, 'rgba(255,79,154,' + (.07 * gl) + ')'); g.addColorStop(1, 'rgba(18,12,46,0)');
+      ctx.globalAlpha = 1; ctx.fillStyle = g; ctx.fillRect(0, 0, W, H);
+    }
+
+    // free-floating dots: drift up, sway, blink
+    var fadeIn = seg(t, 0, .7);
+    amb.forEach(function (d) {
+      var y = ((d.y - t * d.sp) % (H + 20) + H + 20) % (H + 20) - 10, x = d.x + Math.sin(t * .7 + d.ph) * 18;
+      var a = fadeIn * (.45 + .55 * (.5 + .5 * Math.sin(t * d.tw + d.ph)));
+      dot(x, y, d.r, d.c, a);
+    });
+
+    // the gathering: every dot swirls in on a curved path to its spot in the picture
+    var solid = E.sine(seg(t, 3.05, 3.55));
+    if (solid < 1) {
+      gather.forEach(function (d) {
+        var p = E.inOut(seg(t, d.st, d.st + d.du));
+        var fx = d.sx + Math.sin(t * .9 + d.ph) * 14, fy = d.sy - t * 10 + Math.cos(t * .7 + d.ph) * 12; // floating start
+        var a0 = Math.atan2(fy - L.cy, fx - L.cx), r0 = Math.hypot(fx - L.cx, fy - L.cy);
+        var a1 = Math.atan2(d.ty - L.cy, d.tx - L.cx), r1 = Math.hypot(d.tx - L.cx, d.ty - L.cy);
+        var da = a1 - a0; while (da < 0) da += 6.283; // everyone turns the same way, like a current
+        var a = a0 + da * p, r = lerp(r0, r1, p);
+        var x = L.cx + Math.cos(a) * r, y = L.cy + Math.sin(a) * r;
+        if (p >= 1) { x = d.tx; y = d.ty; }
+        var twinkle = p >= 1 ? 1 : .7 + .3 * Math.sin(t * 4 + d.ph);
+        var arrive = 1 + .9 * Math.max(0, 1 - Math.abs(t - (d.st + d.du)) / .18); // little flare when it lands
+        dot(x, y, d.r * arrive * (1 - solid * .6), d.c, fadeIn * twinkle * (1 - solid));
+      });
+    }
+    ctx.globalAlpha = 1;
+
+    // the dots settle into solid shapes, then the lockup glides to the corner
+    if (solid > 0) {
+      drawMark(ctx, mx, my, S);
+      var k = lerp(1, L.k1, mv);
+      drawName(ctx, lerp(L.n0x, L.nfx, E.inOut(seg(t, 3.79, 4.69))), lerp(L.n0y, L.nfy, E.inOut(seg(t, 3.79, 4.69))), L.f0 * k, solid);
+      ctx.globalAlpha = 1;
+    }
+    // a ring of light when it all comes together
+    var ring = seg(t, 3.1, 4.0);
+    if (ring > 0 && ring < 1) { ctx.globalAlpha = (1 - ring) * .45; ctx.strokeStyle = C.yellow; ctx.lineWidth = 1.5; ctx.beginPath(); ctx.arc(mx, my, 60 * S + E.out(ring) * Math.min(W, H) * .5, 0, 6.29); ctx.stroke(); ctx.globalAlpha = 1; }
+
+    // tagline fades in letter by letter as tiny teal sparks
+    var ta = seg(t, 3.35, 3.9);
+    if (ta > 0) {
+      var tk = lerp(1, L.k1, mv), tx = lerp(L.t0x, L.tfx, E.inOut(seg(t, 3.82, 4.72))), ty = lerp(L.t0y, L.tfy, E.inOut(seg(t, 3.82, 4.72)));
+      ctx.save(); ctx.font = '500 ' + (L.tp * Math.max(tk, .85)) + 'px Jost'; ctx.fillStyle = C.teal;
+      var x = tx, px = L.tp * Math.max(tk, .85);
+      for (var i = 0; i < TAG.length; i++) {
+        ctx.globalAlpha = seg(ta, i / TAG.length * .7, i / TAG.length * .7 + .3);
+        ctx.fillText(TAG[i], x, ty); x += ctx.measureText(TAG[i]).width + px * .24;
+      }
+      ctx.restore();
+    }
+
+    // the cream page rises, and a line of dots settles on its edge
+    var cp = E.inOut(seg(t, 4.05, 4.95));
+    if (cp > 0) { ctx.globalAlpha = 1; ctx.fillStyle = C.cream; var top = lerp(H + 10, L.HH + 7, cp); ctx.fillRect(0, top, W, H - top + 10); }
+    row.forEach(function (d) {
+      var p = E.inOut(seg(t, d.st, d.st + .8)); if (p <= 0) return;
+      var x = lerp(d.sx, d.x, p), y = lerp(d.sy, L.HH, p) + (p >= 1 ? Math.sin(t * 2 + d.ph) * 1.2 : 0);
+      dot(x, y, L.phone ? 2.4 : 3.1, d.c, p * (.75 + .25 * Math.sin(t * 3 + d.ph)));
+    });
+    ctx.globalAlpha = 1;
+
+    hint.style.opacity = t < 3.2 ? 1 : 0;
+    controls.classList.toggle('on', t >= END - .3);
+  }
+
+  // ---------- run (the loop keeps going after the intro so the dots keep floating)
+  var rate = 1, last = 0, tNow = 0, raf = 0, running = false, seekT = null;
+  function loop(ts) {
+    if (!last) last = ts;
+    tNow += (ts - last) / 1000 * rate; last = ts;
+    frame(tNow); raf = requestAnimationFrame(loop);
+  }
+  function start(r) { rate = r || 1; tNow = 0; last = 0; cancelAnimationFrame(raf); raf = requestAnimationFrame(loop); }
+  function skip() { if (tNow < END) tNow = END; }
+  function go() {
+    layout();
+    window.addEventListener('resize', layout);
+    document.addEventListener('pointerdown', function (e) { if (!e.target.closest('button')) skip(); });
+    document.addEventListener('keydown', skip);
+    document.getElementById('replay').onclick = function () { start(1); };
+    document.getElementById('slow').onclick = function () { start(.35); };
+    if (reduce) { tNow = END; rate = 0; }
+    start(reduce ? 0 : 1); if (reduce) tNow = END;
+  }
+  window.__seek = function (t) { cancelAnimationFrame(raf); tNow = t; frame(t); };
+  (document.fonts && document.fonts.load ? Promise.all([document.fonts.load('300 40px Jost'), document.fonts.load('500 12px Jost')]) : Promise.resolve()).then(go, go);
+})();
+</script>
+</body>
+</html>

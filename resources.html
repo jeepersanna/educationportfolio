@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Resources for SF Families | Anna Danielson</title>
+<meta name="description" content="Links I share most with San Francisco public school families: enrollment, family voice and rights, mental health, food, housing, and mutual aid.">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Anna Danielson">
+<meta property="og:title" content="Resources for SF Families | Anna Danielson">
+<meta property="og:description" content="Links I share most with San Francisco public school families: enrollment, family voice and rights, mental health, food, housing, and mutual aid.">
+<meta property="og:url" content="https://annadanielson.site/resources.html">
+<meta property="og:image" content="https://annadanielson.site/assets/og/og-home.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Anna Danielson: Sociology, Child Development, Education">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preload" href="assets/jost-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/style.css">
+<script>try{if(/\/(index\.html)?$/.test(location.pathname)&&sessionStorage.getItem('ad-intro')!=='1'&&localStorage.getItem('ad-intro-seen')!=='1'&&!matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.classList.add('splash')}catch(e){}</script>
+<script src="assets/motion.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="index.html" aria-label="Anna Danielson, home">
+      <img src="assets/mark-small.svg" alt="" width="40" height="40">
+      <span class="wordmark">Anna <span class="dot">&bull;</span> Danielson</span>
+    </a>
+    <nav aria-label="Main" class="main-nav">
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="menu">Menu <span class="burger" aria-hidden="true"><i></i><i></i></span></button>
+    <ul class="nav" id="menu">
+      <li><a href="index.html">Home</a></li>
+      <li class="has"><a class="dd-link" href="work.html">Work</a><button class="dd-btn" type="button" aria-expanded="false" aria-controls="dd-work" aria-label="Show Work pages"><svg width="10" height="10" viewBox="0 0 10 10" aria-hidden="true"><path d="M1.5 3.5 5 7l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></button><ul class="dd" id="dd-work"><li><a href="work.html"><b>Overview</b><small>All my work in one place</small></a></li><li><a href="research.html"><b>Research</b><small>Studies in my own neighborhoods</small></a></li><li><a href="design.html"><b>Design</b><small>School and community design</small></a></li></ul></li>
+      <li class="has"><a class="dd-link" href="about.html">About</a><button class="dd-btn" type="button" aria-expanded="false" aria-controls="dd-about" aria-label="Show About pages"><svg width="10" height="10" viewBox="0 0 10 10" aria-hidden="true"><path d="M1.5 3.5 5 7l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></button><ul class="dd" id="dd-about"><li><a href="about.html"><b>Overview</b><small>Where I stand and where it comes from</small></a></li><li><a href="philosophy.html"><b>Philosophy of education</b><small>What I believe about how kids learn</small></a></li><li><a href="community.html"><b>Community organizing</b><small>A decade with SF families</small></a></li></ul></li>
+      <li class="has cur"><a class="dd-link" href="families.html">For families</a><button class="dd-btn" type="button" aria-expanded="false" aria-controls="dd-for-families" aria-label="Show For families pages"><svg width="10" height="10" viewBox="0 0 10 10" aria-hidden="true"><path d="M1.5 3.5 5 7l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></button><ul class="dd" id="dd-for-families"><li><a href="families.html"><b>Overview</b><small>Everything for families in one place</small></a></li><li><a href="glossary.html"><b>Getting involved at school</b><small>Plain answers for new parents</small></a></li><li><a href="resources.html" aria-current="page"><b>Resources for SF families</b><small>Crisis lines, immigration, food, enrollment</small></a></li><li><a href="toolkit.html"><b>Family meeting toolkit</b><small>Printable guides for meetings</small></a></li></ul></li>
+    </ul>
+    </nav>
+  </div>
+</header>
+<script>
+(function(){
+  var nav=document.querySelector('.main-nav'); if(!nav) return;
+  var btns=nav.querySelectorAll('.dd-btn'), tog=nav.querySelector('.menu-toggle');
+  function closeAll(except){ btns.forEach(function(b){ if(b!==except){ b.setAttribute('aria-expanded','false'); b.parentNode.classList.remove('open'); } }); }
+  btns.forEach(function(b){ b.addEventListener('click',function(){
+    var li=b.parentNode; if(li.dataset.hov){ delete li.dataset.hov; return; }
+    var o=b.getAttribute('aria-expanded')==='true'; closeAll(b);
+    b.setAttribute('aria-expanded',String(!o)); b.parentNode.classList.toggle('open',!o); }); });
+  tog.addEventListener('click',function(){ var o=tog.getAttribute('aria-expanded')==='true';
+    tog.setAttribute('aria-expanded',String(!o)); document.documentElement.classList.toggle('menu-open',!o); });
+  document.addEventListener('click',function(e){ if(!nav.contains(e.target)) closeAll(); });
+  // Hover on computers: open right away, close after a short pause so the mouse can travel to the panel
+  if(window.matchMedia('(hover: hover)').matches){
+    nav.querySelectorAll('.has').forEach(function(li){
+      var t, b=li.querySelector('.dd-btn');
+      li.addEventListener('mouseenter',function(){ if(window.innerWidth<761) return; clearTimeout(t); closeAll(b); if(!li.classList.contains('open')) li.dataset.hov='1'; b.setAttribute('aria-expanded','true'); li.classList.add('open'); });
+      li.addEventListener('mouseleave',function(){ if(window.innerWidth<761) return; delete li.dataset.hov; t=setTimeout(function(){ b.setAttribute('aria-expanded','false'); li.classList.remove('open'); },350); });
+    });
+  }
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape'){ var open=nav.querySelector('.has.open .dd-btn'); closeAll();
+    if(document.documentElement.classList.contains('menu-open')){ document.documentElement.classList.remove('menu-open'); tog.setAttribute('aria-expanded','false'); tog.focus(); } else if(open) open.focus(); } });
+})();
+</script>
+<section class="page-hero" aria-labelledby="page-title">
+  <div class="wrap">
+    <p class="crumb"><a href="families.html">For families</a><span class="sep">/</span><span aria-current="page">Resources for SF families</span></p>
+    <h1 id="page-title">Resources for SF families</h1>
+    <p>The links I share most with families at my kids&rsquo; school and in my community.</p>
+  </div>
+</section>
+
+<main id="main">
+  <section aria-label="About this list" id="top">
+    <div class="wrap prose">
+      <p>This isn&rsquo;t everything. It&rsquo;s a starting point I keep up to date. Most of these sites work in several languages. If you get stuck, a school&rsquo;s family liaison or a Family Resource Center can help you through it in person.</p>
+      <p class="callout"><strong>In a crisis?</strong> You have options besides calling the police. <a href="resources.html#r-crisis">Who to call</a>.</p>
+    </div>
+    <nav class="wrap gjump" aria-label="Jump to a topic">
+      <p class="eyebrow">Family and community</p>
+      <ul>
+        <li><a href="resources.html#r-crisis">In a crisis</a></li>
+        <li><a href="resources.html#r-dv">Domestic violence</a></li>
+        <li><a href="resources.html#r-imm">Immigrant families</a></li>
+        <li><a href="resources.html#r-mh">Mental health</a></li>
+        <li><a href="resources.html#r-basic">Food, housing, mutual aid</a></li>
+      </ul>
+      <p class="eyebrow jump-sub">School</p>
+      <ul>
+        <li><a href="resources.html#r-enroll">Enrollment</a></li>
+        <li><a href="resources.html#r-voice">Family voice and rights</a></li>
+      </ul>
+    </nav>
+  </section>
+
+  <section class="gsec" aria-labelledby="r-crisis">
+    <div class="wrap">
+      <p class="eyebrow">Family and community</p>
+      <h2 id="r-crisis">In a crisis: who to call besides the police</h2>
+      <p class="gsub">Calling 911 brings police, and for many families that makes a hard moment more dangerous. These lines are staffed by counselors and peers, not officers. Most are free, 24 hours, and have interpreters.</p>
+      <ul class="res">
+        <li><a href="tel:6282177000">Comprehensive Crisis Services: 628-217-7000</a><span>San Francisco&rsquo;s own 24-hour mental health crisis team. Counselors who can talk by phone or come to you. <a href="https://www.sf.gov/talk-someone-now">All SF crisis lines (SF.gov)</a>.</span></li>
+        <li><a href="tel:4157810500">SF Suicide Prevention: 415-781-0500</a><span>24 hours. Confidential. Someone to talk to when things feel unbearable.</span></li>
+        <li><a href="tel:8556009276">Peer Warm Line: 855-600-9276</a><span>24 hours. For when it isn&rsquo;t an emergency and you just need to talk to a person who has been there. <a href="https://www.mentalhealthsf.org/warm-line/">About the Warm Line</a>.</span></li>
+        <li><a href="https://sf.gov/street-crisis-response-team">Street Crisis Response Team</a><span>Call 311 and ask for the Street Team. Health workers, not police, respond to someone in a mental health or drug crisis on the street.</span></li>
+        <li><a href="tel:8775658860">Trans Lifeline: 877-565-8860</a><span>Peer support by and for trans people, 2 to 10 p.m. They will not send police or emergency services unless you ask them to. <a href="https://translifeline.org/">translifeline.org</a>.</span></li>
+        <li><a href="tel:988">988 Suicide and Crisis Lifeline</a><span>Call or text, 24 hours, in many languages. Good to know: 988 counselors can send emergency services in rare cases they consider life-threatening, so ask about their policy if that matters to you.</span></li>
+      </ul>
+      <p class="note gloss-note">Someone in immediate physical danger still needs 911. The point of this list is that most crises are not that, and you deserve help that doesn&rsquo;t put your family at risk.</p>
+      <p class="totop"><a href="resources.html#top">Back to top &uarr;</a></p>
+    </div>
+  </section>
+
+  <section class="gsec" aria-labelledby="r-dv">
+    <div class="wrap">
+      <h2 id="r-dv">Domestic violence and sexual assault</h2>
+      <p class="gsub">Confidential. You don&rsquo;t have to leave, press charges, or involve police to call. Counselors help you think through safety, housing, kids, and next steps, at your pace.</p>
+      <ul class="res">
+        <li><a href="tel:8773843578">W.O.M.A.N., Inc.: 877-384-3578</a><span>24 hours. Counseling, safety planning, and referrals for anyone experiencing domestic violence. <a href="https://www.womaninc.org/">womaninc.org</a>.</span></li>
+        <li><a href="tel:8775031850">La Casa de las Madres: 877-503-1850</a><span>24 hours, in Spanish and English. Teens can call <a href="tel:8779230700">877-923-0700</a>. Shelter, support, and help for parents and kids. <a href="https://www.lacasa.org/">lacasa.org</a>.</span></li>
+        <li><a href="tel:8777510880">Asian Women&rsquo;s Shelter: 877-751-0880</a><span>24 hours, with interpreters in many Asian languages. <a href="https://www.sfaws.org/">sfaws.org</a>.</span></li>
+        <li><a href="tel:8882601498">Black Women Revolt Against Domestic Violence: 888-260-1498</a><span>Monday to Friday, noon to 4 p.m. Support by and for Black survivors.</span></li>
+        <li><a href="tel:4156477273">SF Women Against Rape: 415-647-7273</a><span>24 hours. Support for survivors of sexual assault, whenever it happened. <a href="https://sfwar.org/">sfwar.org</a>.</span></li>
+        <li><a href="https://www.cuav.org/">Community United Against Violence (CUAV)</a><span>Support and safety planning for LGBTQ people experiencing violence, including from partners or family.</span></li>
+        <li><a href="https://www.sf.gov/crisis-lines-services-for-survivors">All SF crisis lines for survivors (SF.gov)</a><span>The city&rsquo;s full list.</span></li>
+      </ul>
+      <p class="totop"><a href="resources.html#top">Back to top &uarr;</a></p>
+    </div>
+  </section>
+
+  <section class="gsec" aria-labelledby="r-imm">
+    <div class="wrap">
+      <h2 id="r-imm">Immigrant families</h2>
+      <p class="gsub">Every child can go to public school no matter their status. Schools in San Francisco don&rsquo;t ask. These are the networks that respond when ICE shows up, and that help families plan ahead.</p>
+      <ul class="res">
+        <li><a href="tel:4152001548">SF Rapid Response Network: 415-200-1548</a><span>24 hours. Call to report ICE activity, get a trained observer sent out, or get legal help for someone detained. Run by community groups, not the city. <a href="https://www.sfilen.org/">SFILEN</a> is the network of legal and community organizations behind it.</span></li>
+        <li><a href="https://www.ilrc.org/red-cards">Red cards (Immigrant Legal Resource Center)</a><span>Free wallet cards, in many languages, that state your rights if ICE comes to your door. Print them, hand them out at pickup.</span></li>
+        <li><a href="https://www.sfusd.edu/node/7600">SFUSD: Rights of undocumented students</a><span>The district&rsquo;s safe haven policy, and what happens at school if a parent is detained. Keep your child&rsquo;s emergency card up to date.</span></li>
+        <li><a href="https://www.sf.gov/report-immigration-and-customs-enforcement-ice-san-francisco">SF.gov: Help with immigration enforcement</a><span>The city&rsquo;s page: what to do, who to call, and free legal services.</span></li>
+        <li><a href="https://www.sf.gov/departments/office-civic-engagement-and-immigrant-affairs">Office of Civic Engagement and Immigrant Affairs</a><span>City office for immigrant services, language access, and know-your-rights workshops.</span></li>
+        <li><a href="https://www.ndlon.org/">National Day Laborer Organizing Network</a><span>Trains neighbors to watch for ICE and support each other. Their &ldquo;ICE Out of Our Communities&rdquo; trainings are how many of us learned.</span></li>
+      </ul>
+      <p class="totop"><a href="resources.html#top">Back to top &uarr;</a></p>
+    </div>
+  </section>
+
+
+
+  <section class="gsec" aria-labelledby="r-mh">
+    <div class="wrap">
+      <h2 id="r-mh">Mental health and wellness</h2>
+      <p class="gsub">For ongoing support, not only a crisis. The crisis lines are in the section above.</p>
+      <ul class="res">
+        <li><a href="tel:8882463333">SF Behavioral Health access line: 888-246-3333</a><span>24 hours. Help finding mental health and substance use care, including with Medi-Cal and benefits. <a href="https://www.sf.gov/information/get-help-mental-health-or-substance-use">SF.gov: Get help for mental health or substance use</a>.</span></li>
+        <li><a href="https://docs.google.com/document/d/1caeZhKGT4sgjRDMCSRQH6Vry28GFOcb3AGtCtowWn2k/edit?tab=t.0">Mental Health &amp; Wellness Community Resource List</a><span>Hotlines, youth and teen support, family services, and grief support in SF. Compiled by the Filipino Mental Health Initiative of San Francisco (FMHI-SF), a program of the Filipino American Development Foundation.</span></li>
+      </ul>
+      <p class="totop"><a href="resources.html#top">Back to top &uarr;</a></p>
+    </div>
+  </section>
+
+  <section class="gsec" aria-labelledby="r-basic">
+    <div class="wrap">
+      <h2 id="r-basic">Food, housing, and mutual aid</h2>
+      <ul class="res">
+        <li><a href="https://www.sfusd.edu/node/1088">Free school meals</a><span>Breakfast and lunch are free for every SFUSD student. No application needed.</span></li>
+        <li><a href="https://sf.gov/get-food-resources">Get food resources (SF.gov)</a><span>CalFresh, free groceries, and meal programs in one place.</span></li>
+        <li><a href="https://www.sfmfoodbank.org/">SF-Marin Food Bank</a><span>Find a free food pantry near you.</span></li>
+        <li><a href="https://www.sf.gov/find-a-family-resource-center-near-you">Family Resource Centers</a><span>Neighborhood centers for parenting support, playgroups, and help finding services.</span></li>
+        <li><a href="https://www.hrcsf.org/">Housing Rights Committee of San Francisco</a><span>Free tenant counseling, in English, Spanish, and Chinese.</span></li>
+        <li><a href="https://sftu.org/">San Francisco Tenants Union</a><span>Tenant rights help and drop-in counseling.</span></li>
+      </ul>
+      <p class="note gloss-note">Know a resource I should add? <a href="mailto:annajhoop@gmail.com">Email me</a>.</p>
+      <p class="totop"><a href="resources.html#top">Back to top &uarr;</a></p>
+    </div>
+  </section>
+
+
+  <section class="gsec school" aria-labelledby="r-enroll">
+    <div class="wrap">
+      <p class="eyebrow">School</p>
+      <h2 id="r-enroll">Enrollment and school choice</h2>
+      <ul class="res">
+        <li><a href="https://www.sfusd.edu/enroll">SFUSD Enrollment</a><span>How to apply, key dates, and the Enrollment Center. Applications for the next school year are usually due in late January.</span></li>
+        <li><a href="https://www.sfusd.edu/node/8173">Enrollment FAQ</a><span>How assignment works, waitlists, and what to do if you move or arrive mid-year.</span></li>
+        <li><a href="https://www.ppssf.org/">Parents for Public Schools of San Francisco</a><span>Free workshops and one-on-one help with choosing and applying to schools.</span></li>
+        <li><a href="https://www.sf.gov/department-san-francisco-department-of-early-childhood">SF Department of Early Childhood</a><span>Preschool and child care, including free and low-cost options.</span></li>
+      </ul>
+      <p class="totop"><a href="resources.html#top">Back to top &uarr;</a></p>
+    </div>
+  </section>
+
+  <section class="gsec school" aria-labelledby="r-voice">
+    <div class="wrap">
+      <h2 id="r-voice">Family voice and rights</h2>
+      <ul class="res">
+        <li><a href="glossary.html">Getting involved at school</a><span>Honest answers for families who want to get involved but feel unsure: what meetings are like, how to speak up, and how to take on a bigger role.</span></li>
+        <li><a href="https://www.sfusd.edu/node/4511">School Site Councils, ELACs, and family councils</a><span>How SFUSD&rsquo;s family leadership groups work and how to join one.</span></li>
+        <li><a href="https://www.sfusd.edu/node/6573">Language access in SFUSD</a><span>Your right to free interpretation and translation, and how to ask for it.</span></li>
+        <li><a href="https://www.sf.gov/department-san-francisco-department-of-early-childhood/support-for-families-of-children-with-disabilities/">Support for Families of Children with Disabilities</a><span>Free help from parents who&rsquo;ve been through it: IEPs, 504 plans, and services.</span></li>
+        <li><a href="https://sfusd.edu/sped/cac-special-education">Community Advisory Committee for Special Education</a><span>The district family group that advises on special education.</span></li>
+        <li><a href="https://sfusd.edu/aapac">African American Parent Advisory Council</a><span>District council for Black students and families.</span></li>
+      </ul>
+      <p class="totop"><a href="resources.html#top">Back to top &uarr;</a></p>
+    </div>
+  </section>
+</main>
+<footer class="site-footer footer-signoff" id="contact">
+  <div class="footer-fan" aria-hidden="true"><img src="assets/footer-fan.svg" alt="" width="120" height="64"></div>
+  <div class="wrap footer-center">
+    <img class="footer-mark" src="assets/mark-small.svg" alt="" width="72" height="72">
+    <p class="wordmark footer-name">Anna <span class="dot">&bull;</span> Danielson</p>
+    <p class="footer-tag">Sociology &bull; Child Development &bull; Education</p>
+    <a class="open-chip" href="index.html#open-to-work"><i></i>Open to work</a>
+    <p class="social">
+        <a href="https://www.linkedin.com/in/anna-danielson" aria-label="LinkedIn">
+          <svg viewBox="0 0 24 24" width="28" height="28" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="3" fill="currentColor"/><circle cx="7.5" cy="7.6" r="1.6" fill="#120C2E"/><rect x="6.1" y="10" width="2.8" height="8" fill="#120C2E"/><path d="M11 10h2.7v1.2c.5-.8 1.5-1.4 2.8-1.4 2.2 0 3 1.4 3 3.7V18h-2.8v-4c0-1.1-.3-1.9-1.4-1.9s-1.6.8-1.6 1.9v4H11z" fill="#120C2E"/></svg>
+        </a>
+        <a href="https://www.instagram.com/annadanielson.sf/" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" width="28" height="28" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.3" cy="6.7" r="1.2" fill="currentColor"/></svg>
+        </a>
+        <a href="mailto:annajhoop@gmail.com" aria-label="Email">
+          <svg viewBox="0 0 24 24" width="28" height="28" aria-hidden="true"><rect x="2.5" y="5" width="19" height="14" rx="2.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M3.5 7l8.5 6.2L20.5 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+    </p>
+    <p class="small land">I live and work on the unceded homeland of the Ramaytush Ohlone,<br>the original peoples of the San Francisco Peninsula.</p>
+    <p class="small land-links"><a href="https://www.ramaytush.org/">Association of Ramaytush Ohlone</a> &middot; <a href="https://ramaytush.kindful.com/?campaign=1199658">Yunakin Land Tax</a> &middot; <a href="https://sogoreate-landtrust.org/">Sogorea Te&rsquo; Land Trust</a> &middot; <a href="https://sogoreate-landtrust.org/shuumi-land-tax/">Shuumi Land Tax</a></p>
+    <p class="small">San Francisco &nbsp;&middot;&nbsp; &copy; 2026 Anna Danielson</p>
+  </div>
+</footer>
+</body>
+</html>

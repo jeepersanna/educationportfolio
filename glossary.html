@@ -1,0 +1,383 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>School Questions, Answered Simply | Anna Danielson</title>
+<meta name="description" content="Honest answers for San Francisco families who want to get involved at school but feel unsure: what meetings are like, how to speak up, and how to take on a bigger role.">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Anna Danielson">
+<meta property="og:title" content="School Questions, Answered Simply | Anna Danielson">
+<meta property="og:description" content="Honest answers for San Francisco families who want to get involved at school but feel unsure: what meetings are like, how to speak up, and how to take on a bigger role.">
+<meta property="og:url" content="https://annadanielson.site/glossary.html">
+<meta property="og:image" content="https://annadanielson.site/assets/og/og-home.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Anna Danielson: Sociology, Child Development, Education">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preload" href="assets/jost-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/style.css">
+<script>try{if(/\/(index\.html)?$/.test(location.pathname)&&sessionStorage.getItem('ad-intro')!=='1'&&localStorage.getItem('ad-intro-seen')!=='1'&&!matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.classList.add('splash')}catch(e){}</script>
+<script src="assets/motion.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="index.html" aria-label="Anna Danielson, home">
+      <img src="assets/mark-small.svg" alt="" width="40" height="40">
+      <span class="wordmark">Anna <span class="dot">&bull;</span> Danielson</span>
+    </a>
+    <nav aria-label="Main" class="main-nav">
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="menu">Menu <span class="burger" aria-hidden="true"><i></i><i></i></span></button>
+    <ul class="nav" id="menu">
+      <li><a href="index.html">Home</a></li>
+      <li class="has"><a class="dd-link" href="work.html">Work</a><button class="dd-btn" type="button" aria-expanded="false" aria-controls="dd-work" aria-label="Show Work pages"><svg width="10" height="10" viewBox="0 0 10 10" aria-hidden="true"><path d="M1.5 3.5 5 7l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></button><ul class="dd" id="dd-work"><li><a href="work.html"><b>Overview</b><small>All my work in one place</small></a></li><li><a href="research.html"><b>Research</b><small>Studies in my own neighborhoods</small></a></li><li><a href="design.html"><b>Design</b><small>School and community design</small></a></li></ul></li>
+      <li class="has"><a class="dd-link" href="about.html">About</a><button class="dd-btn" type="button" aria-expanded="false" aria-controls="dd-about" aria-label="Show About pages"><svg width="10" height="10" viewBox="0 0 10 10" aria-hidden="true"><path d="M1.5 3.5 5 7l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></button><ul class="dd" id="dd-about"><li><a href="about.html"><b>Overview</b><small>Where I stand and where it comes from</small></a></li><li><a href="philosophy.html"><b>Philosophy of education</b><small>What I believe about how kids learn</small></a></li><li><a href="community.html"><b>Community organizing</b><small>A decade with SF families</small></a></li></ul></li>
+      <li class="has cur"><a class="dd-link" href="families.html">For families</a><button class="dd-btn" type="button" aria-expanded="false" aria-controls="dd-for-families" aria-label="Show For families pages"><svg width="10" height="10" viewBox="0 0 10 10" aria-hidden="true"><path d="M1.5 3.5 5 7l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></button><ul class="dd" id="dd-for-families"><li><a href="families.html"><b>Overview</b><small>Everything for families in one place</small></a></li><li><a href="glossary.html" aria-current="page"><b>Getting involved at school</b><small>Plain answers for new parents</small></a></li><li><a href="resources.html"><b>Resources for SF families</b><small>Crisis lines, immigration, food, enrollment</small></a></li><li><a href="toolkit.html"><b>Family meeting toolkit</b><small>Printable guides for meetings</small></a></li></ul></li>
+    </ul>
+    </nav>
+  </div>
+</header>
+<script>
+(function(){
+  var nav=document.querySelector('.main-nav'); if(!nav) return;
+  var btns=nav.querySelectorAll('.dd-btn'), tog=nav.querySelector('.menu-toggle');
+  function closeAll(except){ btns.forEach(function(b){ if(b!==except){ b.setAttribute('aria-expanded','false'); b.parentNode.classList.remove('open'); } }); }
+  btns.forEach(function(b){ b.addEventListener('click',function(){
+    var li=b.parentNode; if(li.dataset.hov){ delete li.dataset.hov; return; }
+    var o=b.getAttribute('aria-expanded')==='true'; closeAll(b);
+    b.setAttribute('aria-expanded',String(!o)); b.parentNode.classList.toggle('open',!o); }); });
+  tog.addEventListener('click',function(){ var o=tog.getAttribute('aria-expanded')==='true';
+    tog.setAttribute('aria-expanded',String(!o)); document.documentElement.classList.toggle('menu-open',!o); });
+  document.addEventListener('click',function(e){ if(!nav.contains(e.target)) closeAll(); });
+  // Hover on computers: open right away, close after a short pause so the mouse can travel to the panel
+  if(window.matchMedia('(hover: hover)').matches){
+    nav.querySelectorAll('.has').forEach(function(li){
+      var t, b=li.querySelector('.dd-btn');
+      li.addEventListener('mouseenter',function(){ if(window.innerWidth<761) return; clearTimeout(t); closeAll(b); if(!li.classList.contains('open')) li.dataset.hov='1'; b.setAttribute('aria-expanded','true'); li.classList.add('open'); });
+      li.addEventListener('mouseleave',function(){ if(window.innerWidth<761) return; delete li.dataset.hov; t=setTimeout(function(){ b.setAttribute('aria-expanded','false'); li.classList.remove('open'); },350); });
+    });
+  }
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape'){ var open=nav.querySelector('.has.open .dd-btn'); closeAll();
+    if(document.documentElement.classList.contains('menu-open')){ document.documentElement.classList.remove('menu-open'); tog.setAttribute('aria-expanded','false'); tog.focus(); } else if(open) open.focus(); } });
+})();
+</script>
+<section class="page-hero" aria-labelledby="page-title">
+  <div class="wrap">
+    <p class="crumb"><a href="families.html">For families</a><span class="sep">/</span><span aria-current="page">Getting involved at school</span></p>
+    <h1 id="page-title">Getting involved at school</h1>
+    <p>Honest answers for families who want to be part of things but aren&rsquo;t sure where to start.</p>
+  </div>
+</section>
+
+<main id="main">
+  <section aria-label="About this page" id="top">
+    <div class="wrap prose easy">
+      <p>For families who want to be part of their child&rsquo;s school but feel unsure, out of place, or intimidated. School meetings come with their own rules and short words that nobody explains. You don&rsquo;t need to know any of it to show up.</p>
+      <p class="voice-line">Your voice belongs there.</p>
+      <p><strong>Tap a question</strong> to see the answer. <strong>Tap Listen</strong> to hear it out loud.</p>
+      <p>Every school is a little different. If something doesn&rsquo;t match your school, ask. Any question is a good question.</p>
+      <p class="callout"><strong>Looking for help with enrollment, special education, or your rights?</strong> See <a href="resources.html">resources for SF families</a>, or ask your school&rsquo;s family liaison.</p>
+    </div>
+    <nav class="wrap gjump" aria-label="Jump to a topic">
+      <p class="eyebrow">Jump to</p>
+      <ul>
+        <li><a href="glossary.html#q-start">Showing up for the first time</a></li>
+        <li><a href="glossary.html#q-speak">Speaking up in meetings</a></li>
+        <li><a href="glossary.html#q-role">Taking on a bigger role</a></li>
+        <li><a href="glossary.html#q-beyond">Beyond your school</a></li>
+      </ul>
+      <button type="button" class="openall" aria-pressed="false">Open all</button>
+    </nav>
+  </section>
+
+  <section class="gsec" aria-labelledby="q-start">
+    <div class="wrap">
+      <h2 id="q-start">Showing up for the first time</h2>
+      <p class="gsub">For when you want to be part of things but aren&rsquo;t sure you belong. You do.</p>
+      <div class="terms">
+        <details class="term">
+          <summary><span class="t">I want to get involved, but I don&rsquo;t know anyone. Where do I start?</span></summary>
+          <div class="term-body">
+            <p class="ans">Pick one thing and go. You don&rsquo;t need to know anyone first.</p>
+            <p>A PTA meeting, a family event, or a coffee morning are all good first steps. Introduce yourself to one person, like the family liaison, a teacher, or whoever is running the meeting. Say it&rsquo;s your first time. People are usually glad to see a new face, even if they don&rsquo;t show it right away.</p><p>If going alone feels hard, ask another parent from your child&rsquo;s class to come with you.</p>
+            
+            <button type="button" class="listen" aria-label="Listen to this answer">Listen</button>
+          </div>
+        </details>
+        <details class="term">
+          <summary><span class="t">What actually happens at a PTA meeting?</span></summary>
+          <div class="term-body">
+            <p class="ans">Updates, plans, a few votes, and time for questions. It&rsquo;s usually about an hour.</p>
+            <p>Most meetings follow an agenda, a list of what will be talked about. There&rsquo;s often news from the principal, a report on money, plans for upcoming events, and sometimes a vote on how to spend money. At the end, there&rsquo;s usually time for anyone to bring up something new.</p><p>Your first time, it&rsquo;s fine to just listen. You&rsquo;ll learn how things work fast.</p>
+            <dl class="words"><div><dt>Agenda</dt><dd>The list of topics for the meeting, in order.</dd></div><div><dt>Minutes</dt><dd>Notes from the last meeting. They&rsquo;re often approved at the start.</dd></div></dl>
+            <button type="button" class="listen" aria-label="Listen to this answer">Listen</button>
+          </div>
+        </details>
+        <details class="term">
+          <summary><span class="t">Do I have to volunteer or give money to be part of it?</span></summary>
+          <div class="term-body">
+            <p class="ans">No. Coming and sharing your ideas counts.</p>
+            <p>Some PTAs ask for membership dues, but you can come to meetings without paying. Nobody should pressure you to volunteer or donate. Your ideas and your experience as a parent are what the school needs most.</p>
+            
+            <button type="button" class="listen" aria-label="Listen to this answer">Listen</button>
+          </div>
+        </details>
+        <details class="term">
+          <summary><span class="t">I work during the day. Can I still be involved?</span></summary>
+          <div class="term-body">
+            <p class="ans">Yes. There are lots of ways that don&rsquo;t need daytime hours.</p>
+            <ul><li>Go to evening or online meetings, if your school has them.</li><li>Ask if meetings can be recorded or if notes are shared.</li><li>Help with things you can do from home, like translating, making calls, or sharing news in a group chat.</li><li>Ask the PTA to try different meeting times. You&rsquo;re probably not the only one.</li></ul>
+            
+            <button type="button" class="listen" aria-label="Listen to this answer">Listen</button>
+          </div>
+        </details>
+        <details class="term">
+          <summary><span class="t">My English isn&rsquo;t strong. Will I be able to take part?</span></summary>
+          <div class="term-body">
+            <p class="ans">Yes. Ask for an interpreter before the meeting.</p>
+            <p>Schools must provide interpreters for many meetings, and many PTAs do too. If there isn&rsquo;t one, say so. You can also ask to share ideas in writing, in your language, or in a small group with other families who speak it.</p><p>Families who speak other languages are often the ones the school most needs to hear from.</p>
+            
+            <button type="button" class="listen" aria-label="Listen to this answer">Listen</button>
+          </div>
+        </details>
+        <details class="term">
+          <summary><span class="t">Can I bring my kids?</span></summary>
+          <div class="term-body">
+            <p class="ans">Usually, yes. Ask ahead if there will be childcare.</p>
+            <p>Many school meetings are kid-friendly, and some offer childcare or a movie in another room. If yours doesn&rsquo;t, ask the PTA to add it. It helps a lot of families come.</p>
+            
+            <button type="button" class="listen" aria-label="Listen to this answer">Listen</button>
+          </div>
+        </details>
+        <details class="term">
+          <summary><span class="t">Everyone already seems to know each other. How do I fit in?</span></summary>
+          <div class="term-body">
+            <p class="ans">Keep showing up. It takes a few meetings for anyone to feel at home.</p>
+            <p>The parents who seem like insiders were new once too. Sit near someone and introduce yourself. Offer to help with one small task, like setting up chairs or bringing snacks. Small jobs are a quick way to get to know people.</p><p>If a group feels closed to new people, that&rsquo;s a problem with the group, not with you. It&rsquo;s worth saying out loud, kindly.</p>
+            
+            <button type="button" class="listen" aria-label="Listen to this answer">Listen</button>
+          </div>
+        </details>
+      </div>
+      <p class="totop"><a href="glossary.html#top">Back to top &uarr;</a></p>
+    </div>
+  </section>
+  <section class="gsec" aria-labelledby="q-speak">
+    <div class="wrap">
+      <h2 id="q-speak">Speaking up in meetings</h2>
+      <p class="gsub">How to ask, share, and disagree, even if you&rsquo;re nervous.</p>
+      <div class="terms">
+        <details class="term">
+          <summary><span class="t">I don&rsquo;t understand what they&rsquo;re talking about. Is it OK to ask?</span></summary>
+          <div class="term-body">
+            <p class="ans">Yes. Someone else is probably wondering too.</p>
+            <p>Meetings are full of short words and inside history. Asking helps everyone. You can say:</p><ul><li>&ldquo;Sorry, what does SSC stand for?&rdquo;</li><li>&ldquo;Can you explain what we&rsquo;re voting on?&rdquo;</li><li>&ldquo;I&rsquo;m new. Can someone tell me the background on this?&rdquo;</li></ul><p>If you&rsquo;d rather not ask in front of everyone, ask the person running the meeting afterward.</p>
+            
+            <button type="button" class="listen" aria-label="Listen to this answer">Listen</button>
+          </div>
+        </details>
+        <details class="term">
+          <summary><span class="t">I have an idea or a concern. How do I bring it up?</span></summary>
+          <div class="term-body">
+            <p class="ans">Ask to add it to the agenda, or bring it up when there&rsquo;s time for new topics.</p>
+            <p>The easiest way is to email the PTA president or the principal a few days before the meeting and ask to add it. You can also wait for the open time near the end.</p><p>It helps to say three things: what you noticed, why it matters, and what you&rsquo;d like to happen. For example: &ldquo;Many families at pickup told me they didn&rsquo;t know about the meeting. Could we text reminders in Spanish and Chinese?&rdquo;</p>
+            
+            <button type="button" class="listen" aria-label="Listen to this answer">Listen</button>
+          </div>
+        </details>
+        <details class="term">
+          <summary><span class="t">What if I say something wrong?</span></summary>
+          <div class="term-body">
+            <p class="ans">You won&rsquo;t. You&rsquo;re sharing your experience, and that can&rsquo;t be wrong.</p>
+            <p>You don&rsquo;t need the right words or facts. &ldquo;Here&rsquo;s what I see as a parent&rdquo; is enough. If someone corrects a detail, that&rsquo;s normal. It doesn&rsquo;t take away from your point.</p>
+            
+            <button type="button" class="listen" aria-label="Listen to this answer">Listen</button>
+          </div>
+        </details>
+        <details class="term">
+          <summary><span class="t">How do votes work? What&rsquo;s a &ldquo;motion&rdquo;?</span></summary>
+          <div class="term-body">
+            <p class="ans">Someone proposes something, someone else agrees to discuss it, and the group votes.</p>
+            <p>Many PTAs and councils use a formal way of running meetings. It sounds stiff, but it&rsquo;s simple once you know the steps:</p><ol><li>Someone says, &ldquo;I move that we&hellip;&rdquo; That&rsquo;s a <strong>motion</strong>.</li><li>Someone else says, &ldquo;Second.&rdquo; Now the group can discuss it.</li><li>People talk about it.</li><li>The group votes.</li></ol><p>If you&rsquo;re not sure who can vote, ask. Usually members can, and you can become a member at the meeting.</p>
+            <dl class="words"><div><dt>Motion</dt><dd>A formal proposal for the group to vote on.</dd></div><div><dt>Second</dt><dd>When another person agrees the motion should be discussed.</dd></div><div><dt>Quorum</dt><dd>The smallest number of members who must be there to vote.</dd></div><div><dt>Bylaws</dt><dd>The group&rsquo;s written rules.</dd></div></dl>
+            <button type="button" class="listen" aria-label="Listen to this answer">Listen</button>
+          </div>
+        </details>
+        <details class="term">
+          <summary><span class="t">How do I disagree with someone, like the principal or a PTA leader?</span></summary>
+          <div class="term-body">
+            <p class="ans">Calmly, with your reasons, and with what you&rsquo;d like instead.</p>
+            <p>You can disagree and still be respectful. Try: &ldquo;I see it differently. Here&rsquo;s why. Could we try this instead?&rdquo; If you&rsquo;re nervous, write it down first. It also helps to talk with other parents before the meeting. If they agree, ask them to speak too.</p><p>Families have a right to speak up. The school is not allowed to treat your child differently because you disagreed.</p>
+            
+            <button type="button" class="listen" aria-label="Listen to this answer">Listen</button>
+          </div>
+        </details>
+        <details class="term">
+          <summary><span class="t">The same few parents make all the decisions. How can that change?</span></summary>
+          <div class="term-body">
+            <p class="ans">Bring more families in, and ask for changes that make it easier for them to stay.</p>
+            <p>Invite one or two other families to come with you. Ask the group to try things like interpreters, childcare, different meeting times, small group talks, and ways to share ideas without speaking in front of everyone. When more kinds of families are in the room, decisions get better for every kid.</p><p>I made free tools for exactly this: <a href="toolkit.html">the family meeting toolkit</a>.</p>
+            
+            <button type="button" class="listen" aria-label="Listen to this answer">Listen</button>
+          </div>
+        </details>
+      </div>
+      <p class="totop"><a href="glossary.html#top">Back to top &uarr;</a></p>
+    </div>
+  </section>
+  <section class="gsec" aria-labelledby="q-role">
+    <div class="wrap">
+      <h2 id="q-role">Taking on a bigger role</h2>
+      <p class="gsub">When you&rsquo;re ready for more than showing up.</p>
+      <div class="terms">
+        <details class="term">
+          <summary><span class="t">What&rsquo;s the difference between the PTA and the School Site Council?</span></summary>
+          <div class="term-body">
+            <p class="ans">The PTA raises money and builds community. The School Site Council helps make official school decisions.</p>
+            <ul><li>The <strong>PTA</strong> is a parent group. It runs events, raises money, and decides how to spend what it raises. Anyone can come.</li><li>The <strong>School Site Council</strong> is a small, elected group of parents and staff. It helps write the school&rsquo;s yearly plan and approves how some school money is spent. Meetings are open to the public.</li></ul><p>If you want to help build community, start with the PTA. If you want a say in school decisions, look at the School Site Council.</p>
+            <dl class="words"><div><dt>Parent Teacher Association <span>(PTA)</span></dt><dd>A parent group that&rsquo;s part of a national group. A Parent Teacher Organization (PTO) is the same idea, but independent.</dd></div><div><dt>School Site Council <span>(SSC)</span></dt><dd>Half school staff, half parents and community members.</dd></div><div><dt>School Plan for Student Achievement <span>(SPSA)</span></dt><dd>The school&rsquo;s yearly plan, written by the School Site Council.</dd></div></dl><p class="more-link"><a href="https://www.sfusd.edu/node/4120">SFUSD: School Site Councils &rarr;</a><br><a href="https://capta.org/">California State PTA &rarr;</a></p>
+            <button type="button" class="listen" aria-label="Listen to this answer">Listen</button>
+          </div>
+        </details>
+        <details class="term">
+          <summary><span class="t">How much time does it take?</span></summary>
+          <div class="term-body">
+            <p class="ans">As much as you can give. Most groups meet about once a month.</p>
+            <p>Going to meetings might be an hour or two a month. A PTA officer or council member role takes more, maybe a few hours a month. You can start small and add more when you&rsquo;re ready. It&rsquo;s OK to say no to things, too.</p>
+            
+            <button type="button" class="listen" aria-label="Listen to this answer">Listen</button>
+          </div>
+        </details>
+        <details class="term">
+          <summary><span class="t">Could I be a PTA officer? What do they do?</span></summary>
+          <div class="term-body">
+            <p class="ans">Yes. Most PTAs are looking for people, and you don&rsquo;t need experience.</p>
+            <p>Common roles are president, vice president, secretary (takes notes), and treasurer (tracks money). Some PTAs have others, like historian or volunteer coordinator. Officers are usually elected in the spring for the next school year.</p><p>If a whole role feels like too much, ask if you can share it with someone or shadow them first.</p>
+            
+            <button type="button" class="listen" aria-label="Listen to this answer">Listen</button>
+          </div>
+        </details>
+        <details class="term">
+          <summary><span class="t">How do I join the School Site Council?</span></summary>
+          <div class="term-body">
+            <p class="ans">Let the principal know you&rsquo;re interested. Parent members are elected by other parents, usually in the fall.</p>
+            <p>Terms are often two years. You&rsquo;ll look at school data and budgets, and people will help you understand them. You don&rsquo;t need to be an expert. You need to care about the school and be willing to ask questions.</p><p>Councils need parents who speak languages other than English and parents who are newer to the school. They see things others miss.</p>
+            
+            <button type="button" class="listen" aria-label="Listen to this answer">Listen</button>
+          </div>
+        </details>
+        <details class="term">
+          <summary><span class="t">What is the English Learner Advisory Committee, and should I go?</span></summary>
+          <div class="term-body">
+            <p class="ans">It&rsquo;s a family group for parents of kids learning English. If that&rsquo;s your family, yes.</p>
+            <p>It gives advice to the principal and the School Site Council about how the school supports English learners. Schools with 21 or more English learners must have one. It&rsquo;s often a more comfortable first group to join, since everyone there shares something in common.</p>
+            <dl class="words"><div><dt>English Learner Advisory Committee <span>(ELAC)</span></dt><dd></dd></div><div><dt>Title I <span>(Title One)</span></dt><dd>Federal money for schools with many low-income families. Families help decide how some of it is spent.</dd></div></dl>
+            <button type="button" class="listen" aria-label="Listen to this answer">Listen</button>
+          </div>
+        </details>
+        <details class="term">
+          <summary><span class="t">How do I get other families involved?</span></summary>
+          <div class="term-body">
+            <p class="ans">Personal invitations work better than flyers.</p>
+            <p>Ask families you already talk to at pickup or in group chats. Tell them what the meeting is about and why it matters to their kids. Offer to sit with them. Follow up afterward with a quick note about what happened. People come back when they feel wanted and see that their ideas made a difference.</p>
+            
+            <button type="button" class="listen" aria-label="Listen to this answer">Listen</button>
+          </div>
+        </details>
+      </div>
+      <p class="totop"><a href="glossary.html#top">Back to top &uarr;</a></p>
+    </div>
+  </section>
+  <section class="gsec" aria-labelledby="q-beyond">
+    <div class="wrap">
+      <h2 id="q-beyond">Beyond your school</h2>
+      <p class="gsub">The district, the school board, and organizing together.</p>
+      <div class="terms">
+        <details class="term">
+          <summary><span class="t">What does the school board do, and is it worth going?</span></summary>
+          <div class="term-body">
+            <p class="ans">The board makes the big decisions for every school in the city. Yes, it&rsquo;s worth it, especially with other families.</p>
+            <p>The Board of Education is elected by San Francisco voters. It votes on the budget, school closures, school assignment, and district rules, and it hires the superintendent who runs the district.</p><p>You don&rsquo;t have to speak. Going to watch, or watching online, is a good way to learn how decisions get made.</p>
+            <dl class="words"><div><dt>San Francisco Unified School District <span>(SFUSD)</span></dt><dd>The city&rsquo;s public school system, often called &ldquo;the district.&rdquo;</dd></div></dl><p class="more-link"><a href="https://www.sfusd.edu/about-sfusd/board-education/board-meeting-calendar-and-agendas">Board meeting dates and agendas &rarr;</a></p>
+            <button type="button" class="listen" aria-label="Listen to this answer">Listen</button>
+          </div>
+        </details>
+        <details class="term">
+          <summary><span class="t">How do I speak at a board meeting?</span></summary>
+          <div class="term-body">
+            <p class="ans">Sign up for public comment and speak for a minute or two.</p>
+            <p>Write down what you want to say. Start with your name, your child&rsquo;s school, and what you want the board to do. Keep it short. Reading from your notes is fine. You can ask for an interpreter.</p><p>A group of families speaking on the same issue gets noticed. You can also email board members directly.</p>
+            <p class="more-link"><a href="https://www.sfusd.edu/node/18253">SFUSD: How public comment works &rarr;</a></p>
+            <button type="button" class="listen" aria-label="Listen to this answer">Listen</button>
+          </div>
+        </details>
+        <details class="term">
+          <summary><span class="t">How can families push for change together?</span></summary>
+          <div class="term-body">
+            <p class="ans">Find others who care about the same thing, and show up together.</p>
+            <p>One parent can be ignored. Twenty parents with the same ask usually can&rsquo;t. Start with families at your school, then connect with families at other schools who have the same concern. Many of the biggest changes in SF schools started this way.</p><p>Citywide family groups are a good place to find people:</p>
+            <dl class="words"><div><dt>African American Parent Advisory Council <span>(AAPAC)</span></dt><dd>Citywide, for Black students and families.</dd></div><div><dt>District English Learner Advisory Committee <span>(DELAC)</span></dt><dd>Citywide, for families of English learners.</dd></div><div><dt>Community Advisory Committee for Special Education <span>(CAC)</span></dt><dd>Citywide, for families of students with disabilities.</dd></div><div><dt>Parent Advisory Council <span>(PAC)</span></dt><dd>Citywide parents who advise the board, including on the district&rsquo;s spending plan, the Local Control and Accountability Plan (LCAP).</dd></div></dl><p class="more-link"><a href="https://www.sfusd.edu/node/4511">SFUSD: All family councils &rarr;</a></p>
+            <button type="button" class="listen" aria-label="Listen to this answer">Listen</button>
+          </div>
+        </details>
+      </div>
+      <p class="totop"><a href="glossary.html#top">Back to top &uarr;</a></p>
+    </div>
+  </section>
+
+  <section aria-label="More">
+    <div class="wrap">
+      <p class="note gloss-note">Have a question that isn&rsquo;t here, or a story about getting started? <a href="mailto:annajhoop@gmail.com">Email me</a> and I&rsquo;ll add it. See also: <a href="resources.html">resources for SF families</a> and the <a href="toolkit.html">family meeting toolkit</a>.</p>
+    </div>
+  </section>
+</main>
+<script>
+(function(){var b=document.querySelector('.openall'),d=document.querySelectorAll('details.term');
+b.addEventListener('click',function(){var o=b.getAttribute('aria-pressed')!=='true';d.forEach(function(x){x.open=o});b.setAttribute('aria-pressed',o);b.textContent=o?'Close all':'Open all'});
+window.addEventListener('beforeprint',function(){d.forEach(function(x){x.open=true})});
+var ss=window.speechSynthesis;
+document.querySelectorAll('.listen').forEach(function(btn){
+  if(!ss){btn.hidden=true;return}
+  btn.addEventListener('click',function(){
+    var on=btn.classList.contains('on');ss.cancel();
+    document.querySelectorAll('.listen.on').forEach(function(x){x.classList.remove('on');x.textContent='Listen'});
+    if(on)return;
+    var det=btn.closest('details'),body=det.querySelector('.term-body').cloneNode(true);
+    body.querySelectorAll('button,.more-link').forEach(function(x){x.remove()});
+    var txt=det.querySelector('summary').innerText+'. '+body.innerText;
+    var u=new SpeechSynthesisUtterance(txt);u.lang='en-US';u.rate=.9;
+    u.onend=function(){btn.classList.remove('on');btn.textContent='Listen'};
+    btn.classList.add('on');btn.textContent='Stop';ss.speak(u);
+  });
+});
+document.querySelectorAll('details.term').forEach(function(x){x.addEventListener('toggle',function(){if(!x.open&&ss&&x.querySelector('.listen.on'))ss.cancel()})});
+})();
+</script>
+<footer class="site-footer footer-signoff" id="contact">
+  <div class="footer-fan" aria-hidden="true"><img src="assets/footer-fan.svg" alt="" width="120" height="64"></div>
+  <div class="wrap footer-center">
+    <img class="footer-mark" src="assets/mark-small.svg" alt="" width="72" height="72">
+    <p class="wordmark footer-name">Anna <span class="dot">&bull;</span> Danielson</p>
+    <p class="footer-tag">Sociology &bull; Child Development &bull; Education</p>
+    <a class="open-chip" href="index.html#open-to-work"><i></i>Open to work</a>
+    <p class="social">
+        <a href="https://www.linkedin.com/in/anna-danielson" aria-label="LinkedIn">
+          <svg viewBox="0 0 24 24" width="28" height="28" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="3" fill="currentColor"/><circle cx="7.5" cy="7.6" r="1.6" fill="#120C2E"/><rect x="6.1" y="10" width="2.8" height="8" fill="#120C2E"/><path d="M11 10h2.7v1.2c.5-.8 1.5-1.4 2.8-1.4 2.2 0 3 1.4 3 3.7V18h-2.8v-4c0-1.1-.3-1.9-1.4-1.9s-1.6.8-1.6 1.9v4H11z" fill="#120C2E"/></svg>
+        </a>
+        <a href="https://www.instagram.com/annadanielson.sf/" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" width="28" height="28" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.3" cy="6.7" r="1.2" fill="currentColor"/></svg>
+        </a>
+        <a href="mailto:annajhoop@gmail.com" aria-label="Email">
+          <svg viewBox="0 0 24 24" width="28" height="28" aria-hidden="true"><rect x="2.5" y="5" width="19" height="14" rx="2.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M3.5 7l8.5 6.2L20.5 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+    </p>
+    <p class="small land">I live and work on the unceded homeland of the Ramaytush Ohlone,<br>the original peoples of the San Francisco Peninsula.</p>
+    <p class="small land-links"><a href="https://www.ramaytush.org/">Association of Ramaytush Ohlone</a> &middot; <a href="https://ramaytush.kindful.com/?campaign=1199658">Yunakin Land Tax</a> &middot; <a href="https://sogoreate-landtrust.org/">Sogorea Te&rsquo; Land Trust</a> &middot; <a href="https://sogoreate-landtrust.org/shuumi-land-tax/">Shuumi Land Tax</a></p>
+    <p class="small">San Francisco &nbsp;&middot;&nbsp; &copy; 2026 Anna Danielson</p>
+  </div>
+</footer>
+</body>
+</html>

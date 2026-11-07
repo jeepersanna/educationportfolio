@@ -18,7 +18,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preload" href="assets/jost-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="assets/style.css">
-<script>try{if(/\/(index\.html)?$/.test(location.pathname)&&sessionStorage.getItem('ad-intro')!=='1'&&!matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.classList.add('splash')}catch(e){}</script>
+<script>try{if(/\/(index\.html)?$/.test(location.pathname)&&sessionStorage.getItem('ad-intro')!=='1'&&localStorage.getItem('ad-intro-seen')!=='1'&&!matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.classList.add('splash')}catch(e){}</script>
 <script src="assets/motion.js" defer></script>
 </head>
 <body>
@@ -29,16 +29,41 @@
       <img src="assets/mark-small.svg" alt="" width="40" height="40">
       <span class="wordmark">Anna <span class="dot">&bull;</span> Danielson</span>
     </a>
-    <nav aria-label="Main">
-    <ul class="nav">
+    <nav aria-label="Main" class="main-nav">
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="menu">Menu <span class="burger" aria-hidden="true"><i></i><i></i></span></button>
+    <ul class="nav" id="menu">
       <li><a href="index.html" aria-current="page">Home</a></li>
-      <li><a href="research.html">Research</a></li>
-      <li><a href="philosophy.html">Philosophy</a></li>
-      <li><a href="community.html">Community</a></li>
+      <li class="has"><a class="dd-link" href="work.html">Work</a><button class="dd-btn" type="button" aria-expanded="false" aria-controls="dd-work" aria-label="Show Work pages"><svg width="10" height="10" viewBox="0 0 10 10" aria-hidden="true"><path d="M1.5 3.5 5 7l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></button><ul class="dd" id="dd-work"><li><a href="work.html"><b>Overview</b><small>All my work in one place</small></a></li><li><a href="research.html"><b>Research</b><small>Studies in my own neighborhoods</small></a></li><li><a href="design.html"><b>Design</b><small>School and community design</small></a></li></ul></li>
+      <li class="has"><a class="dd-link" href="about.html">About</a><button class="dd-btn" type="button" aria-expanded="false" aria-controls="dd-about" aria-label="Show About pages"><svg width="10" height="10" viewBox="0 0 10 10" aria-hidden="true"><path d="M1.5 3.5 5 7l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></button><ul class="dd" id="dd-about"><li><a href="about.html"><b>Overview</b><small>Where I stand and where it comes from</small></a></li><li><a href="philosophy.html"><b>Philosophy of education</b><small>What I believe about how kids learn</small></a></li><li><a href="community.html"><b>Community organizing</b><small>A decade with SF families</small></a></li></ul></li>
+      <li class="has"><a class="dd-link" href="families.html">For families</a><button class="dd-btn" type="button" aria-expanded="false" aria-controls="dd-for-families" aria-label="Show For families pages"><svg width="10" height="10" viewBox="0 0 10 10" aria-hidden="true"><path d="M1.5 3.5 5 7l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></button><ul class="dd" id="dd-for-families"><li><a href="families.html"><b>Overview</b><small>Everything for families in one place</small></a></li><li><a href="glossary.html"><b>Getting involved at school</b><small>Plain answers for new parents</small></a></li><li><a href="resources.html"><b>Resources for SF families</b><small>Crisis lines, immigration, food, enrollment</small></a></li><li><a href="toolkit.html"><b>Family meeting toolkit</b><small>Printable guides for meetings</small></a></li></ul></li>
     </ul>
     </nav>
   </div>
 </header>
+<script>
+(function(){
+  var nav=document.querySelector('.main-nav'); if(!nav) return;
+  var btns=nav.querySelectorAll('.dd-btn'), tog=nav.querySelector('.menu-toggle');
+  function closeAll(except){ btns.forEach(function(b){ if(b!==except){ b.setAttribute('aria-expanded','false'); b.parentNode.classList.remove('open'); } }); }
+  btns.forEach(function(b){ b.addEventListener('click',function(){
+    var li=b.parentNode; if(li.dataset.hov){ delete li.dataset.hov; return; }
+    var o=b.getAttribute('aria-expanded')==='true'; closeAll(b);
+    b.setAttribute('aria-expanded',String(!o)); b.parentNode.classList.toggle('open',!o); }); });
+  tog.addEventListener('click',function(){ var o=tog.getAttribute('aria-expanded')==='true';
+    tog.setAttribute('aria-expanded',String(!o)); document.documentElement.classList.toggle('menu-open',!o); });
+  document.addEventListener('click',function(e){ if(!nav.contains(e.target)) closeAll(); });
+  // Hover on computers: open right away, close after a short pause so the mouse can travel to the panel
+  if(window.matchMedia('(hover: hover)').matches){
+    nav.querySelectorAll('.has').forEach(function(li){
+      var t, b=li.querySelector('.dd-btn');
+      li.addEventListener('mouseenter',function(){ if(window.innerWidth<761) return; clearTimeout(t); closeAll(b); if(!li.classList.contains('open')) li.dataset.hov='1'; b.setAttribute('aria-expanded','true'); li.classList.add('open'); });
+      li.addEventListener('mouseleave',function(){ if(window.innerWidth<761) return; delete li.dataset.hov; t=setTimeout(function(){ b.setAttribute('aria-expanded','false'); li.classList.remove('open'); },350); });
+    });
+  }
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape'){ var open=nav.querySelector('.has.open .dd-btn'); closeAll();
+    if(document.documentElement.classList.contains('menu-open')){ document.documentElement.classList.remove('menu-open'); tog.setAttribute('aria-expanded','false'); tog.focus(); } else if(open) open.focus(); } });
+})();
+</script>
 <section class="hero" aria-labelledby="hero-title">
   <div class="wrap">
     <img class="hero-mark" src="assets/mark-lockup-animated.svg" alt="" width="180" height="180">
@@ -115,10 +140,10 @@
     <div class="wrap">
       <p class="eyebrow">Work</p>
       <h2 id="work">What's here</h2>
-      <div class="cards">
+      <div class="cards four">
         <a class="card" href="research.html">
           <h3>Research</h3>
-          <p>A field study of third places on Ocean Avenue, a new project on where kids get to just exist, and an emerging focus on literacy and home languages.</p>
+          <p>Who gets a say in school decisions, a field study of third places on Ocean Avenue, and a new project on where kids get to just exist.</p>
           <span class="more">Read more &rarr;</span>
         </a>
         <a class="card" href="philosophy.html">
@@ -129,6 +154,11 @@
         <a class="card" href="community.html">
           <h3>Community</h3>
           <p>A decade of organizing with SF families: the Wild Roots play group, Monroe Elementary, mutual aid, and parent education.</p>
+          <span class="more">Read more &rarr;</span>
+        </a>
+        <a class="card" href="toolkit.html">
+          <h3>Family meeting toolkit</h3>
+          <p>Free, printable tools in English, Spanish, and Chinese for school meetings where every family can take part. A first version I&rsquo;m testing this year.</p>
           <span class="more">Read more &rarr;</span>
         </a>
       </div>
@@ -204,6 +234,8 @@
           <svg viewBox="0 0 24 24" width="28" height="28" aria-hidden="true"><rect x="2.5" y="5" width="19" height="14" rx="2.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M3.5 7l8.5 6.2L20.5 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </a>
     </p>
+    <p class="small land">I live and work on the unceded homeland of the Ramaytush Ohlone,<br>the original peoples of the San Francisco Peninsula.</p>
+    <p class="small land-links"><a href="https://www.ramaytush.org/">Association of Ramaytush Ohlone</a> &middot; <a href="https://ramaytush.kindful.com/?campaign=1199658">Yunakin Land Tax</a> &middot; <a href="https://sogoreate-landtrust.org/">Sogorea Te&rsquo; Land Trust</a> &middot; <a href="https://sogoreate-landtrust.org/shuumi-land-tax/">Shuumi Land Tax</a></p>
     <p class="small">San Francisco &nbsp;&middot;&nbsp; &copy; 2026 Anna Danielson</p>
   </div>
 </footer>

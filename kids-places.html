@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Where Do Kids Get to Just Exist? | Anna Danielson</title>
+<meta name="description" content="An interview study by Anna Danielson on parents' memories of free places and their children's independence in San Francisco.">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Anna Danielson">
+<meta property="og:title" content="Where Do Kids Get to Just Exist? | Anna Danielson">
+<meta property="og:description" content="An interview study by Anna Danielson on parents' memories of free places and their children's independence in San Francisco.">
+<meta property="og:url" content="https://annadanielson.site/kids-places.html">
+<meta property="og:image" content="https://annadanielson.site/assets/og/og-home.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Anna Danielson: Sociology, Child Development, Education">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preload" href="assets/jost-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/style.css">
+<script>try{if(/\/(index\.html)?$/.test(location.pathname)&&sessionStorage.getItem('ad-intro')!=='1'&&localStorage.getItem('ad-intro-seen')!=='1'&&!matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.classList.add('splash')}catch(e){}</script>
+<script src="assets/motion.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="index.html" aria-label="Anna Danielson, home">
+      <img src="assets/mark-small.svg" alt="" width="40" height="40">
+      <span class="wordmark">Anna <span class="dot">&bull;</span> Danielson</span>
+    </a>
+    <nav aria-label="Main" class="main-nav">
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="menu">Menu <span class="burger" aria-hidden="true"><i></i><i></i></span></button>
+    <ul class="nav" id="menu">
+      <li><a href="index.html">Home</a></li>
+      <li class="has cur"><a class="dd-link" href="work.html">Work</a><button class="dd-btn" type="button" aria-expanded="false" aria-controls="dd-work" aria-label="Show Work pages"><svg width="10" height="10" viewBox="0 0 10 10" aria-hidden="true"><path d="M1.5 3.5 5 7l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></button><ul class="dd" id="dd-work"><li><a href="work.html"><b>Overview</b><small>All my work in one place</small></a></li><li><a href="research.html" class="here"><b>Research</b><small>Studies in my own neighborhoods</small></a></li><li><a href="design.html"><b>Design</b><small>School and community design</small></a></li></ul></li>
+      <li class="has"><a class="dd-link" href="about.html">About</a><button class="dd-btn" type="button" aria-expanded="false" aria-controls="dd-about" aria-label="Show About pages"><svg width="10" height="10" viewBox="0 0 10 10" aria-hidden="true"><path d="M1.5 3.5 5 7l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></button><ul class="dd" id="dd-about"><li><a href="about.html"><b>Overview</b><small>Where I stand and where it comes from</small></a></li><li><a href="philosophy.html"><b>Philosophy of education</b><small>What I believe about how kids learn</small></a></li><li><a href="community.html"><b>Community organizing</b><small>A decade with SF families</small></a></li></ul></li>
+      <li class="has"><a class="dd-link" href="families.html">For families</a><button class="dd-btn" type="button" aria-expanded="false" aria-controls="dd-for-families" aria-label="Show For families pages"><svg width="10" height="10" viewBox="0 0 10 10" aria-hidden="true"><path d="M1.5 3.5 5 7l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></button><ul class="dd" id="dd-for-families"><li><a href="families.html"><b>Overview</b><small>Everything for families in one place</small></a></li><li><a href="glossary.html"><b>Getting involved at school</b><small>Plain answers for new parents</small></a></li><li><a href="resources.html"><b>Resources for SF families</b><small>Crisis lines, immigration, food, enrollment</small></a></li><li><a href="toolkit.html"><b>Family meeting toolkit</b><small>Printable guides for meetings</small></a></li></ul></li>
+    </ul>
+    </nav>
+  </div>
+</header>
+<script>
+(function(){
+  var nav=document.querySelector('.main-nav'); if(!nav) return;
+  var btns=nav.querySelectorAll('.dd-btn'), tog=nav.querySelector('.menu-toggle');
+  function closeAll(except){ btns.forEach(function(b){ if(b!==except){ b.setAttribute('aria-expanded','false'); b.parentNode.classList.remove('open'); } }); }
+  btns.forEach(function(b){ b.addEventListener('click',function(){
+    var li=b.parentNode; if(li.dataset.hov){ delete li.dataset.hov; return; }
+    var o=b.getAttribute('aria-expanded')==='true'; closeAll(b);
+    b.setAttribute('aria-expanded',String(!o)); b.parentNode.classList.toggle('open',!o); }); });
+  tog.addEventListener('click',function(){ var o=tog.getAttribute('aria-expanded')==='true';
+    tog.setAttribute('aria-expanded',String(!o)); document.documentElement.classList.toggle('menu-open',!o); });
+  document.addEventListener('click',function(e){ if(!nav.contains(e.target)) closeAll(); });
+  // Hover on computers: open right away, close after a short pause so the mouse can travel to the panel
+  if(window.matchMedia('(hover: hover)').matches){
+    nav.querySelectorAll('.has').forEach(function(li){
+      var t, b=li.querySelector('.dd-btn');
+      li.addEventListener('mouseenter',function(){ if(window.innerWidth<761) return; clearTimeout(t); closeAll(b); if(!li.classList.contains('open')) li.dataset.hov='1'; b.setAttribute('aria-expanded','true'); li.classList.add('open'); });
+      li.addEventListener('mouseleave',function(){ if(window.innerWidth<761) return; delete li.dataset.hov; t=setTimeout(function(){ b.setAttribute('aria-expanded','false'); li.classList.remove('open'); },350); });
+    });
+  }
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape'){ var open=nav.querySelector('.has.open .dd-btn'); closeAll();
+    if(document.documentElement.classList.contains('menu-open')){ document.documentElement.classList.remove('menu-open'); tog.setAttribute('aria-expanded','false'); tog.focus(); } else if(open) open.focus(); } });
+})();
+</script>
+<section class="page-hero" aria-labelledby="page-title">
+  <div class="wrap">
+    <p class="crumb"><a href="work.html">Work</a><span class="sep">/</span><a href="research.html">Research</a><span class="sep">/</span><span aria-current="page">Where Do Kids Get to Just Exist?</span></p>
+    <h1 id="page-title">Where do kids get to just exist?</h1>
+    <p>Parents&rsquo; memories of free places, and their children&rsquo;s independence in San Francisco.</p>
+  </div>
+</section>
+
+<main id="main">  <section aria-label="Study">
+    <div class="wrap">
+      <article class="project study">
+        <div class="project-meta">
+          <span class="status now">In progress &middot; round one done</span>
+          <dl>
+          <dt>Course</dt><dd>SOC 21, Introduction to Research Methods, CCSF, Fall 2026</dd>
+          <dt>Site</dt><dd>San Francisco families</dd>
+          <dt>Methods</dt><dd>3 semi-structured interviews with parents, coded by theme. Next: a parent survey.</dd>
+        </dl>
+        </div>
+        <div class="project-body">
+          <h2>The question</h2>
+          <p>Kids in American cities have lost many of the places where they could spend time without an adult watching, a schedule to follow, or a price of admission. Researchers call the freedom to get around without an adult independent mobility, and it has been shrinking for decades as cities were built around cars, organized activities replaced free play, and parents grew more worried about safety.</p>
+          <p>Parents sit in the middle of that change. They remember the places they had, and they decide which places their own kids get. I asked: <strong>How do parents raising kids in a city describe the places they had outside home and school growing up, and how do those compare to the places their kids have now?</strong></p>
+
+          <h2>How I did it</h2>
+          <p>In October 2026 I interviewed three parents raising kids in San Francisco, each for 30 to 45 minutes. I chose parents who grew up in very different places, a ranching town, a suburb, and a small industrial city, so that where they grew up could serve as a point of comparison. I asked about the places they spent time as kids and teens, who was watching, what cost money, and then about their own kids now: where they go, what parents are comfortable with, what worries them, and what would need to change. I took handwritten notes, coded them, and grouped the codes into four themes and one thread that ran through all of them.</p>
+
+          <h2>What I found</h2>
+          <ul class="clean">
+            <li><strong>Then vs. now is not one story.</strong> Two parents had far more unsupervised freedom than their kids have. The third had less. She was kept within earshot as a child and closely monitored as a teen, and now her kids ride the bus, walk to the store, and go to the library with friends. A city with transit gave them more range than she had in a small town.</li>
+            <li><strong>Cheap places went away.</strong> Parents remembered cheap movie theaters, friends&rsquo; houses, and cheap gas. Those places closed or got expensive. One parent worried that kids out on their own are treated as a nuisance by other adults.</li>
+            <li><strong>Freedom comes from preparation, not age.</strong> None of the parents tied independence to a set age. They answer fear with practice, route planning, and smart watches instead of keeping kids home. That work takes parent time, which not every family has.</li>
+            <li><strong>What kids miss is making their own fun.</strong> Asked what their kids gain or miss, all three described self-directed time: being bored, coming up with ideas, cooking and building things, moving their bodies, without a program or a screen.</li>
+            <li><strong>The thread: getting around.</strong> The parents&rsquo; own teen freedom ran on cars. Their kids get range on foot, by scooter, and on buses and BART. What parents want in place is mostly about getting around safely.</li>
+          </ul>
+
+          <figure class="ask-fig" aria-labelledby="ask-cap">
+            <div class="ask-col pays">
+              <p class="ask-head">What public money pays for</p>
+              <ul><li>Afterschool and summer programs</li><li>Program locations</li><li>Program hours that fit work schedules</li><li>Supervision</li></ul>
+            </div>
+            <div class="ask-col wants">
+              <p class="ask-head">What parents asked for</p>
+              <ul><li>Safer streets and bike lanes</li><li>Safe stops along main corridors, like libraries</li><li>Knowing transit routes, and what to do on them</li><li>More green space</li><li>An easy, screen-free place to hang out</li></ul>
+            </div>
+            <figcaption id="ask-cap">Asked what would need to be in place for more freedom, no parent named a program, a park, or a playground. They named routes, transit, and safe places to stop. California has put $13.75 billion into afterschool and summer programs over five years, and San Francisco&rsquo;s next children&rsquo;s needs assessment asks families about program locations and hours, not public space.</figcaption>
+          </figure>
+
+          <h2>What it means</h2>
+          <p>Most of this fits the research: each generation of parents measures their kids&rsquo; lives against their own freedom, and parents&rsquo; sense of safety matters more than how much play space a neighborhood has. The exception matters. One parent&rsquo;s childhood was the restricted one, because her parents didn&rsquo;t trust their neighborhood. That suggests restriction depends on a family&rsquo;s relationship to the place around it, not just on the decade, and it pushes against the idea that small-town kids always had more freedom.</p>
+          <p>If fear matters more than play space, the question becomes what changes fear. These parents pointed to things a city can build: safe routes, known safe stops, and transit kids can learn. Public money for kids&rsquo; time outside school mostly pays for supervision. What these parents say is missing is unsupervised time, and safe places to spend it.</p>
+
+          <h2>Limits and next steps</h2>
+          <ul class="clean">
+            <li>Three parents from my own networks, all raising kids in the same city, so the findings can&rsquo;t stand for a larger trend.</li>
+            <li>Notes were handwritten, so most of the data is paraphrase.</li>
+            <li>Every account here is an adult&rsquo;s view of a child&rsquo;s life.</li>
+            <li><strong>Next: a survey.</strong> A survey of San Francisco parents will show how common these patterns are across more families, and test what actually changes parents&rsquo; fears, including whether other adults&rsquo; judgment shapes what they allow.</li>
+            <li>Later: more parent interviews across a wider range of incomes and places parents grew up, and mapping where kids in the Excelsior and Ingleside actually spend unsupervised time.</li>
+          </ul>
+
+          <p>This builds on my <a href="third-places.html">Ocean Avenue caf&eacute; study</a>, which asked what makes a third place for adults. This project asks the same question about kids.</p>
+          <p class="note">Interviews are confidential, so the full paper isn&rsquo;t posted here. I&rsquo;m happy to talk about the study.</p>
+          <p class="read-full"><a href="research.html">&larr; Back to research</a></p>
+        </div>
+      </article>
+    </div>
+  </section>
+</main>
+<footer class="site-footer footer-signoff" id="contact">
+  <div class="footer-fan" aria-hidden="true"><img src="assets/footer-fan.svg" alt="" width="120" height="64"></div>
+  <div class="wrap footer-center">
+    <img class="footer-mark" src="assets/mark-small.svg" alt="" width="72" height="72">
+    <p class="wordmark footer-name">Anna <span class="dot">&bull;</span> Danielson</p>
+    <p class="footer-tag">Sociology &bull; Child Development &bull; Education</p>
+    <a class="open-chip" href="index.html#open-to-work"><i></i>Open to work</a>
+    <p class="social">
+        <a href="https://www.linkedin.com/in/anna-danielson" aria-label="LinkedIn">
+          <svg viewBox="0 0 24 24" width="28" height="28" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="3" fill="currentColor"/><circle cx="7.5" cy="7.6" r="1.6" fill="#120C2E"/><rect x="6.1" y="10" width="2.8" height="8" fill="#120C2E"/><path d="M11 10h2.7v1.2c.5-.8 1.5-1.4 2.8-1.4 2.2 0 3 1.4 3 3.7V18h-2.8v-4c0-1.1-.3-1.9-1.4-1.9s-1.6.8-1.6 1.9v4H11z" fill="#120C2E"/></svg>
+        </a>
+        <a href="https://www.instagram.com/annadanielson.sf/" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" width="28" height="28" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.3" cy="6.7" r="1.2" fill="currentColor"/></svg>
+        </a>
+        <a href="mailto:annajhoop@gmail.com" aria-label="Email">
+          <svg viewBox="0 0 24 24" width="28" height="28" aria-hidden="true"><rect x="2.5" y="5" width="19" height="14" rx="2.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M3.5 7l8.5 6.2L20.5 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+    </p>
+    <p class="small land">I live and work on the unceded homeland of the Ramaytush Ohlone,<br>the original peoples of the San Francisco Peninsula.</p>
+    <p class="small land-links"><a href="https://www.ramaytush.org/">Association of Ramaytush Ohlone</a> &middot; <a href="https://ramaytush.kindful.com/?campaign=1199658">Yunakin Land Tax</a> &middot; <a href="https://sogoreate-landtrust.org/">Sogorea Te&rsquo; Land Trust</a> &middot; <a href="https://sogoreate-landtrust.org/shuumi-land-tax/">Shuumi Land Tax</a></p>
+    <p class="small">San Francisco &nbsp;&middot;&nbsp; &copy; 2026 Anna Danielson</p>
+  </div>
+</footer>
+</body>
+</html>
