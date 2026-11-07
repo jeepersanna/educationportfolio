@@ -1143,3 +1143,37 @@ main:has(#r-crisis) section.gsec::before { max-width: none; width: min(calc(100%
 body:has(.nf) main:empty { display: none; }
 body:has(.nf) .page-hero, body:has(.nf) .site-header { background: radial-gradient(max(72vw, 520px) 760px at 100% 85%, rgba(255,79,154,.42) 0%, rgba(255,79,154,.16) 32%, rgba(46,196,182,.1) 60%, rgba(18,12,46,0) 84%) fixed, var(--indigo); }
 @media (max-width: 700px) { .nf-cards { grid-template-columns: 1fr; } .nf-code i { width: 40px; } }
+
+/* Fewer leaf dividers: one at each big shift, thin lines elsewhere */
+main > section[aria-labelledby=about]::before,
+main > section[aria-labelledby=now]::before,
+main > section[aria-labelledby=beliefs]:not(:first-child)::before,
+main > section[aria-label="Philosophy of education statement, continued"]::before,
+main > section[aria-labelledby=refs]::before { display: none !important; }
+main > section[aria-labelledby=about] > .wrap,
+main > section[aria-labelledby=now] > .wrap,
+main > section[aria-labelledby=beliefs]:not(:first-child) > .wrap,
+main > section[aria-label="Philosophy of education statement, continued"] > .wrap,
+main > section[aria-labelledby=refs] > .wrap { border-top: 1px solid var(--rule); padding-top: 3rem; }
+
+/* Philosophy: pull quote inside Where I stand */
+.stand-pull { margin: 2rem 0; padding-left: 1.1rem; border-left: 4px solid var(--pink); font-weight: 300; font-size: clamp(1.3rem, 2.4vw, 1.65rem); line-height: 1.4; max-width: 38rem; }
+/* Research: small figures on the overview */
+.project-body .mini-fig { margin: 1.4rem 0 1.2rem; max-width: 34rem; }
+.filters-mini .filters li { padding: .4rem .7rem; font-size: .85rem; }
+.filters-mini .filters li strong { font-weight: 500; }
+.mini-fig figcaption { margin-top: .5rem; font-size: .85rem; color: var(--muted); text-align: center; }
+.mini-fig.cafes { display: grid; grid-template-columns: repeat(3, 1fr); gap: .6rem; }
+.cafes > div { background: #fff; border: 1px solid var(--rule); border-radius: 10px; padding: .8rem .9rem; display: flex; flex-direction: column; gap: .2rem; }
+.cafes b { font-weight: 500; font-size: .95rem; } .cafes small { color: var(--muted); font-size: .78rem; }
+.cafes span { margin-top: .5rem; font-size: .82rem; padding-top: .45rem; border-top: 3px solid var(--k); }
+.cafes .k-teal { --k: var(--teal); } .cafes .k-yellow { --k: var(--yellow); } .cafes .k-pink { --k: var(--pink); }
+.project-body .mini-ask { max-width: 34rem; margin: 1.4rem 0 1.2rem; }
+.project-body .mini-ask > div:first-child { background: #fff; border: 1px solid var(--rule); }
+.project-body .mini-ask > div:first-child p { color: var(--teal-ink); }
+.project-body .mini-ask > div:last-child p { color: var(--yellow); }
+.project-body .mini-ask ul { list-style: none; margin: 0; padding: 0; } .project-body .mini-ask li { font-size: .92rem; padding: .12rem 0; }
+@media (max-width: 640px) { .mini-fig.cafes { grid-template-columns: 1fr; } }
+/* Work: open to work banner */
+.work-open { margin-top: 2rem; }
+.work-open { margin: 0 0 1.5rem; }
