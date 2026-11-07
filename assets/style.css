@@ -1177,3 +1177,16 @@ main > section[aria-labelledby=refs] > .wrap { border-top: 1px solid var(--rule)
 /* Work: open to work banner */
 .work-open { margin-top: 2rem; }
 .work-open { margin: 0 0 1.5rem; }
+/* Work page: dark Open to work banner */
+.open-banner.work-open { background: var(--indigo); color: var(--cream); border-color: rgba(251,244,232,.12); }
+.work-open .open-chip.on-light { color: var(--cream); border-color: rgba(251,244,232,.35); }
+.work-open .resume-btn { background: var(--cream); color: var(--indigo); }
+.work-open .resume-btn:hover { background: var(--teal); color: var(--indigo); }
+.work-open .resume-btn { background: var(--pink); color: var(--indigo); }
+.work-open .resume-btn:hover { background: var(--cream); color: var(--indigo); }
+
+.open-btns { display: flex; gap: .7rem; flex-wrap: wrap; }
+.work-open .email-btn { background: transparent; color: var(--cream); border: 1px solid rgba(251,244,232,.45); }
+.work-open .email-btn svg { color: var(--teal); }
+.work-open .email-btn:hover { background: var(--teal); color: var(--indigo); border-color: var(--teal); }
+.work-open .email-btn:hover svg { color: var(--indigo); }
