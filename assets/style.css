@@ -1118,3 +1118,28 @@ main:has(#r-crisis) section.gsec::before { max-width: none; width: min(calc(100%
 .mini-cta a:hover b { color: var(--teal-ink); }
 .mini-cta a:focus-visible { outline: 2px solid var(--pink); outline-offset: 4px; }
 .mini-cta b svg { width: 16px; height: 16px; }
+
+/* 404 page: one centered navy screen with the glow, small cards */
+.page-hero.nf { min-height: calc(100vh - 80px); display: flex; align-items: center; padding: 4rem 0 4.5rem; text-align: center; }
+.nf .wrap { width: 100%; }
+.nf-code { display: inline-flex; align-items: center; gap: 1rem; margin: 0 0 1.4rem !important; max-width: none !important; }
+.nf-code span { font-weight: 300; font-size: clamp(3.5rem, 8vw, 5.5rem); line-height: 1; color: var(--pink); }
+.nf-code i { width: 70px; height: 2px; background: linear-gradient(90deg, var(--teal), var(--yellow)); }
+.nf-code b { font-weight: 500; font-size: .78rem; letter-spacing: .22em; text-transform: uppercase; color: var(--teal); }
+.nf h1 { letter-spacing: .14em !important; }
+.page-hero p.nf-sub { margin: 1rem auto 0; }
+.nf-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: .9rem; max-width: 52rem; margin: 2.75rem auto 0; text-align: left; }
+.nf-card { display: grid; grid-template-columns: 1fr auto; align-items: end; gap: .2rem 1rem; padding: 1rem 1.2rem; border-radius: 12px; background: rgba(251,244,232,.06); border: 1px solid rgba(251,244,232,.14); border-top: 3px solid var(--k); color: var(--cream); text-decoration: none; transition: background .15s, transform .15s; }
+.nf-card small { grid-column: 1 / -1; font-size: .68rem; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; color: var(--k); }
+.nf-card b { font-weight: 400; font-size: 1.05rem; }
+.nf-card span { color: var(--k); }
+.nf-card:hover { background: rgba(251,244,232,.12); transform: translateY(-2px); color: var(--cream); }
+.nf-card:focus-visible { outline: 2px solid var(--yellow); outline-offset: 3px; }
+.nf-card.k-pink { --k: var(--pink); } .nf-card.k-teal { --k: var(--teal); } .nf-card.k-yellow { --k: var(--yellow); }
+.page-hero p.nf-foot { margin: 2rem auto 0; font-size: .95rem; color: rgba(251,244,232,.7); }
+.nf-foot a { color: var(--cream); text-decoration-color: var(--pink); text-underline-offset: .25em; }
+.nf-foot a:hover { color: var(--teal); }
+.nf-foot span { margin: 0 .5rem; }
+body:has(.nf) main:empty { display: none; }
+body:has(.nf) .page-hero, body:has(.nf) .site-header { background: radial-gradient(max(72vw, 520px) 760px at 100% 85%, rgba(255,79,154,.42) 0%, rgba(255,79,154,.16) 32%, rgba(46,196,182,.1) 60%, rgba(18,12,46,0) 84%) fixed, var(--indigo); }
+@media (max-width: 700px) { .nf-cards { grid-template-columns: 1fr; } .nf-code i { width: 40px; } }
