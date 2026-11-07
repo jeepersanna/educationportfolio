@@ -33,16 +33,17 @@ html.ls-on { overflow: hidden; }
 /* the header: one gradient from the top-left corner, shared by the nav bar and the hero on every page */
 .site-header, .hero, .page-hero { background: radial-gradient(130vmax 95vmax at 0% 0%, rgba(255,79,154,.42) 0%, rgba(255,79,154,.18) 28%, rgba(46,196,182,.10) 58%, rgba(18,12,46,0) 78%) fixed, var(--indigo); }
 .hero .wrap { position: relative; }
-.ls-mark { position: absolute; pointer-events: none; z-index: 1; }`;
+.ls-mark { position: absolute; pointer-events: none; z-index: 1; }\n.hero, .page-hero { box-shadow: inset 0 -4px 0 #2EC4B6, inset 0 -8px 0 #FF4F9A; }`;
     var st = document.createElement('style'); st.textContent = css; document.head.appendChild(st);
   var root = document.documentElement, hero = document.querySelector('.hero'), mainEl = document.querySelector('main');
   var markImg = hero && hero.querySelector('.hero-mark'), h1El = hero && hero.querySelector('h1'), tagP = hero && hero.querySelector('.tagline');
   if (!hero || !markImg || !h1El || !tagP || !mainEl) { root.classList.remove('splash'); return; }
   var C = { pink: '#FF4F9A', teal: '#2EC4B6', yellow: '#FFD23F', cream: '#FBF4E8', indigo: '#120C2E' };
   var BRAND = [C.pink, C.teal, C.yellow];
-  var END = 6.9;
+  var END = 7.15, WAVES = true;
   var seen = false;
-  try { seen = sessionStorage.getItem('ad-intro') === '1'; sessionStorage.setItem('ad-intro', '1'); } catch (e) {}
+  // the intro plays on a visitor's first load only; every load after that gets the quiet build
+  try { seen = localStorage.getItem('ad-intro-seen') === '1' || sessionStorage.getItem('ad-intro') === '1'; localStorage.setItem('ad-intro-seen', '1'); sessionStorage.setItem('ad-intro', '1'); } catch (e) {}
   var playing = !seen && (window.scrollY || 0) <= 40;
   var ls, sky, cv, ctx, nameEl, tagEl, blobs, corner, hint;
   if (playing) {
@@ -109,6 +110,23 @@ html.ls-on { overflow: hidden; }
     for (var q = 0; q < 110; q++) { var aa = rnd() * 6.28; sparks.push({ b: 2.85 + rnd() * .08, a: aa, v: 160 + rnd() * 420, life: .7 + rnd() * .7, c: q % 4 ? BRAND[q % 3] : C.cream, r: 1 + rnd() * 2.2, big: true }); }
   }
 
+  // where each letter of the real name sits, relative to the first one, measured from the live text (so kerning is included)
+  function nameLetterOffsets() {
+    var out = [], first = null;
+    Array.prototype.forEach.call(h1El.childNodes, function (n) {
+      if (n.nodeType === 3) { var t = n.textContent; for (var i = 0; i < t.length; i++) { if (/\s/.test(t[i])) continue; var r = document.createRange(); r.setStart(n, i); r.setEnd(n, i + 1); var x = r.getBoundingClientRect().left; if (first === null) first = x; out.push(x - first); } }
+      else if (n.nodeType === 1) { var x2 = n.getBoundingClientRect().left; if (first === null) first = x2; out.push(x2 - first); }
+    });
+    return out;
+  }
+  // nudge a run of letter spans so each lands where the real text puts it (splitting into spans loses kerning)
+  function alignLetters(list, targets) {
+    if (!targets || targets.length !== list.length) return;
+    list.forEach(function (s) { s.style.marginLeft = ''; });
+    var first = list[0].getBoundingClientRect().left;
+    list.forEach(function (s, i) { if (!i) return; var d = targets[i] - (s.getBoundingClientRect().left - first); if (Math.abs(d) > .05) s.style.marginLeft = d.toFixed(2) + 'px'; });
+  }
+
   // ---------- layout
   var W, H, DPR, L = {}, nameW = 0, nameH = 0, tagW = 0;
   var NAME = [], TAG = tagP.textContent.replace(/\s+/g, ' ').trim();
@@ -152,6 +170,7 @@ html.ls-on { overflow: hidden; }
     var dot = nameEl.querySelector('.dot'); dot.style.marginLeft = '.1em'; dot.style.marginRight = '.38em';
     var extra = (right - left - nameEl.offsetWidth) / 2;
     if (extra > 0) { dot.style.marginLeft = 'calc(.1em + ' + extra.toFixed(1) + 'px)'; dot.style.marginRight = 'calc(.38em + ' + extra.toFixed(1) + 'px)'; }
+    alignLetters(spans, nameLetterOffsets());
     nameW = nameEl.offsetWidth; nameH = nameEl.offsetHeight;
     L.n0x = (W - nameW) / 2;
     L.nfx = left; L.nfy = hr.top + sy; L.tfx = tr.left; L.tfy = tr.top + sy; L.tagW = tr.width;
@@ -161,6 +180,7 @@ html.ls-on { overflow: hidden; }
   // ---------- scene drawing
   var GLYPHS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ*+#%&@✶✿❀';
   function frame(t) {
+    t = t < 3.8 ? t : (t < 4.05 ? 3.8 : t - .25); // hold the finished lockup for a beat before anything moves
     ctx.clearRect(0, 0, W, H);
     var sm = function (x) { return x * x * x * (x * (x * 6 - 15) + 10); }; // smoothstep: no kick at the start or the end
     var mv = sm(seg(t, 4.5, 5.8)), mvS = sm(seg(t, 4.35, 5.45));
@@ -330,9 +350,9 @@ html.ls-on { overflow: hidden; }
     nameEl.style.transform = 'translate(' + nx.toFixed(1) + 'px,' + ny.toFixed(1) + 'px)';
 
     // tagline types itself out
-    var n = Math.floor(cl((t - 3.55) / .022, 0, TAG.length));
+    var n = Math.floor(cl((t - 3.15) / .013, 0, TAG.length));
     var tt = tagEl.querySelector('.t'); if (tt.textContent.length !== n) tt.textContent = TAG.slice(0, n);
-    tagEl.querySelector('.caret').style.display = t > 3.5 && t < 4.3 ? '' : 'none';
+    tagEl.querySelector('.caret').style.display = t > 3.1 && t < 4.3 ? '' : 'none';
     var tagOut = sm(seg(t, 4.25, 4.7)), tagIn = sm(seg(t, 5.55, 5.95));
     tagEl.style.opacity = t < 5.05 ? (1 - tagOut).toFixed(3) : tagIn.toFixed(3);
     // in the lockup the tagline wraps exactly like the real one underneath
@@ -344,6 +364,15 @@ html.ls-on { overflow: hidden; }
     var lift = (H - L.HH) + 60, off = lift * (1 - rp);
     if (t >= END) { mainEl.style.transform = ''; sky.style.height = '100%'; }
     else { mainEl.style.transform = 'translateY(' + off.toFixed(1) + 'px)'; sky.style.height = (rp > 0 ? (L.HH + off) : H + 10) + 'px'; }
+    if (WAVES && rp > 0 && t < END) {
+      // two bands of color ride the page's top edge as it rises, rolling like water, and settle into the striped rule under the header
+      var edge = L.HH + off, calm = 1 - sm(seg(t, 5.3, 5.95)), wa = 22 * calm;
+      [[C.pink, 8, 0], [C.teal, 4, 2.1]].forEach(function (w) {
+        ctx.fillStyle = w[0]; ctx.beginPath(); ctx.moveTo(0, edge + 40);
+        for (var x = 0; x <= W + 20; x += 16) ctx.lineTo(x, edge - w[1] + Math.sin(x * .011 + t * 4.5 + w[2]) * wa - wa * .6 * calm);
+        ctx.lineTo(W, edge + 40); ctx.closePath(); ctx.fill();
+      });
+    }
     hint.style.opacity = t < 4.3 ? 1 : 0;
     if (t >= 6.05 && !done) finish(); // only once everything has come to rest
   }
@@ -378,7 +407,7 @@ html.ls-on { overflow: hidden; }
   // the small, low-key build for the lockup on repeat visits: lamp blinks on, lines and leaves come in, the name settles, the tagline follows (~1.5s)
   var quiet = false;
   function quietBuild() {
-    var LO = [3, 0, 4, 1, 5, 2], LFO = [2, 5, 0, 3, 1, 4], orig = h1El.innerHTML, letters = [];
+    var LO = [3, 0, 4, 1, 5, 2], LFO = [2, 5, 0, 3, 1, 4], orig = h1El.innerHTML, letters = [], targets = nameLetterOffsets();
     Array.prototype.slice.call(h1El.childNodes).forEach(function (n) {
       if (n.nodeType === 3) {
         var frag = document.createDocumentFragment();
@@ -389,6 +418,7 @@ html.ls-on { overflow: hidden; }
         h1El.replaceChild(frag, n);
       } else if (n.nodeType === 1) { n.style.opacity = '0'; letters.push(n); }
     });
+    alignLetters(letters, targets);
     tagP.style.opacity = '0';
     quiet = true; settleMark(); // places the canvas and hides the image
     var t0 = null;
