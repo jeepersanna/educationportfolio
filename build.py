@@ -189,7 +189,6 @@ def crumb(page, title):
     short = title.split(" | ")[0]
     if item != page:
         parts.append(f'<a href="{item}">{iname}</a>')
-        parts.append(f'<span aria-current="page">{short}</span>')
     else:
         parts.append(f'<span aria-current="page">{iname}</span>')
     return '\n    <p class="crumb">' + '<span class="sep">/</span>'.join(parts) + '</p>'
@@ -233,6 +232,11 @@ for f, nav in [(f, f) for f, _ in PAGES] + EXTRA:
     top = ""
     marker = '<section class="page-hero" aria-labelledby="page-title">\n  <div class="wrap">'
     cr = crumb(f, title)
+    # Long page titles: tighter letter spacing so they don't run to three lines
+    m2 = re.search(r'<h1 id="page-title"( class="([^"]*)")?>(.*?)</h1>', body)
+    if m2 and len(re.sub(r"&[a-z]+;", "x", m2.group(3))) > 26:
+        cls = ((m2.group(2) or "") + " long-title").strip()
+        body = body.replace(m2.group(0), f'<h1 id="page-title" class="{cls}">{m2.group(3)}</h1>', 1)
     if cr and marker in body:
         body = body.replace(marker, marker + cr, 1)
     (root / f).write_text(head(title, desc, f, extra) + header(nav, f) + top + body + FOOTER)
