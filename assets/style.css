@@ -1073,3 +1073,29 @@ main:has(#r-crisis) section.gsec::before { max-width: none; width: min(calc(100%
 .wk-now.cta span svg { flex: none; margin-top: -1px; }
 .wk-now.cta .em { color: var(--pink); font-weight: 600; white-space: nowrap; margin-left: .15rem; }
 .wk-now.cta a:hover .em { color: var(--cream); }
+
+.wk-now.cta .em { display: inline-flex; align-items: center; gap: .35rem; vertical-align: middle; }
+.wk-now.cta .em svg { flex: none; width: 16px; height: 16px; }
+/* CTA hover: tag goes yellow, Email me goes cream with an underline */
+.wk-now.cta a:hover span { background: var(--yellow); }
+.wk-now.cta a:hover .em { color: var(--cream); text-decoration: underline; text-underline-offset: .25em; text-decoration-color: var(--pink); }
+.wk-now.cta a:hover span { background: var(--pink); }
+.wk-now.cta a:hover .em { color: var(--teal); text-decoration: none; }
+.wk-c li.hl .mini-ask > div:last-child p { color: var(--yellow); }
+.wk-c li.hl .mini-ask > div:first-child { background: var(--cream); color: var(--indigo); }
+.wk-c li.hl .mini-ask > div:first-child p { color: var(--teal-ink); }
+.wk-c li.hl { border-radius: 4px; }
+/* Featured study box: lighter teal */
+.wk-c li.hl { background: rgba(251,244,232,.28); }
+.wk-now.cta .em svg { color: var(--yellow); }
+/* Featured study: title outside, lighter teal box holds only the comparison */
+.wk-c li.hl { background: none; padding: 0; margin: 0; border-radius: 0; border-bottom: 0; }
+.wk-c li.hl > a { padding: .7rem 0 .55rem; }
+.wk-c li.hl .mini-ask { background: rgba(251,244,232,.28); border-radius: 4px; padding: .8rem; }
+.wk-c li:has(+ li.hl) { border-bottom: 1px solid color-mix(in srgb, currentColor 30%, transparent); }
+.wk-now.cta .em svg { color: var(--teal); }
+/* "All ..." links on landing blocks: hover states */
+.wk-c .wq-go { transition: color .15s, text-decoration-color .15s; text-decoration: underline; text-decoration-color: transparent; text-decoration-thickness: 2px; text-underline-offset: .35em; }
+.wk-c.c-navy .wq-go:hover { color: var(--teal); }
+.wk-c.c-teal .wq-go:hover, .wk-c.c-pink .wq-go:hover, .wk-c.c-yellow .wq-go:hover { text-decoration-color: var(--indigo); }
+.wk-c.c-navy .wq-go:hover { color: var(--pink); text-decoration-color: var(--pink); }
