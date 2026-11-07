@@ -66,27 +66,20 @@
     if(document.documentElement.classList.contains('menu-open')){ document.documentElement.classList.remove('menu-open'); tog.setAttribute('aria-expanded','false'); tog.focus(); } else if(open) open.focus(); } });
 })();
 </script>
-<section class="page-hero" aria-labelledby="page-title">
+<section class="page-hero nf" aria-labelledby="page-title">
   <div class="wrap">
-    <h1 id="page-title">Page not found</h1>
-    <p>This page doesn&rsquo;t exist, or it moved.</p>
+    <p class="nf-code" aria-hidden="true"><span>404</span><i></i><b>Not found</b></p>
+    <h1 id="page-title">This page doesn&rsquo;t exist</h1>
+    <p class="nf-sub">It may have moved, or the link has a typo. Try one of these instead.</p>
+    <div class="nf-cards">
+      <a class="nf-card k-pink" href="work.html"><small>Work</small><b>Research and design</b><span>&rarr;</span></a>
+      <a class="nf-card k-teal" href="about.html"><small>About</small><b>What I believe</b><span>&rarr;</span></a>
+      <a class="nf-card k-yellow" href="families.html"><small>For families</small><b>Guides and links</b><span>&rarr;</span></a>
+    </div>
+    <p class="nf-foot"><a href="index.html">&larr; Back to home</a> <span aria-hidden="true">&middot;</span> Looking for something specific? <a href="mailto:annajhoop@gmail.com">Email me</a>.</p>
   </div>
 </section>
-
-<main id="main">  <section aria-label="Where to go">
-    <div class="wrap prose">
-      <img src="assets/sprout-pink-dot.svg" alt="" aria-hidden="true" width="60" height="38">
-      <p>Try one of these:</p>
-      <ul class="clean">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="research.html">Research</a></li>
-        <li><a href="philosophy.html">Philosophy of education</a></li>
-        <li><a href="community.html">Community</a></li>
-      </ul>
-      <p>Or email me at <a href="mailto:annajhoop@gmail.com">annajhoop@gmail.com</a>.</p>
-    </div>
-  </section>
-</main>
+<main id="main"></main>
 <footer class="site-footer footer-signoff" id="contact">
   <div class="footer-fan" aria-hidden="true"><img src="assets/footer-fan.svg" alt="" width="120" height="64"></div>
   <div class="wrap footer-center">
