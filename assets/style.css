@@ -277,6 +277,8 @@ a.card { position: relative; overflow: visible; }
 .stats-row b { display: block; font-weight: 300; font-size: 2.8rem; line-height: 1; }
 .stats-row .pink { color: var(--pink-ink); } .stats-row .teal { color: var(--teal-ink); }
 .stats-row span { display: block; margin-top: .4rem; color: var(--muted); font-size: .92rem; line-height: 1.4; }
+/* Work page: stats sit between the open-to-work banner and the cards */
+.wk-wrap .stats-row { margin-top: 2.25rem; margin-bottom: 2.75rem; }
 .quote-band .qin { display: flex; align-items: center; gap: 1.5rem; margin: 0; max-width: 52rem; }
 .quote-band .qin img { flex: none; }
 .quote-band blockquote { margin: 0; font-weight: 300; font-size: 1.6rem; line-height: 1.45; }
