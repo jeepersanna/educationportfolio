@@ -1,69 +1,4 @@
-<!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Anna Danielson</title>
-<meta name="description" content="Anna Danielson studies sociology, child development, and education in San Francisco, with a focus on kids, families, and public schools.">
-<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-<meta property="og:type" content="website">
-<meta property="og:site_name" content="Anna Danielson">
-<meta property="og:title" content="Anna Danielson">
-<meta property="og:description" content="Anna Danielson studies sociology, child development, and education in San Francisco, with a focus on kids, families, and public schools.">
-<meta property="og:url" content="https://annadanielson.site/">
-<meta property="og:image" content="https://annadanielson.site/assets/og/og-home.png">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Anna Danielson: Sociology, Child Development, Education">
-<meta name="twitter:card" content="summary_large_image">
-<link rel="preload" href="assets/jost-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="assets/style.css">
-<script>try{if(/\/(index\.html)?$/.test(location.pathname)&&sessionStorage.getItem('ad-intro')!=='1'&&!matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.classList.add('splash')}catch(e){}</script>
-<script src="assets/motion.js" defer></script>
-</head>
-<body>
-<a class="skip" href="#main">Skip to content</a>
-<header class="site-header">
-  <div class="wrap">
-    <a class="brand" href="index.html" aria-label="Anna Danielson, home">
-      <img src="assets/mark-small.svg" alt="" width="40" height="40">
-      <span class="wordmark">Anna <span class="dot">&bull;</span> Danielson</span>
-    </a>
-    <nav aria-label="Main" class="main-nav">
-    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="menu">Menu <span class="burger" aria-hidden="true"><i></i><i></i></span></button>
-    <ul class="nav" id="menu">
-      <li><a href="index.html" aria-current="page">Home</a></li>
-      <li class="has"><a class="dd-link" href="work.html">Work</a><button class="dd-btn" type="button" aria-expanded="false" aria-controls="dd-work" aria-label="Show Work pages"><svg width="10" height="10" viewBox="0 0 10 10" aria-hidden="true"><path d="M1.5 3.5 5 7l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></button><ul class="dd" id="dd-work"><li><a href="work.html"><b>Overview</b><small>All my work in one place</small></a></li><li><a href="research.html"><b>Research</b><small>Studies in my own neighborhoods</small></a></li><li><a href="design.html"><b>Design</b><small>School and community design</small></a></li></ul></li>
-      <li class="has"><a class="dd-link" href="about.html">About</a><button class="dd-btn" type="button" aria-expanded="false" aria-controls="dd-about" aria-label="Show About pages"><svg width="10" height="10" viewBox="0 0 10 10" aria-hidden="true"><path d="M1.5 3.5 5 7l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></button><ul class="dd" id="dd-about"><li><a href="about.html"><b>Overview</b><small>Where I stand and where it comes from</small></a></li><li><a href="philosophy.html"><b>Philosophy of education</b><small>What I believe about how kids learn</small></a></li><li><a href="community.html"><b>Community organizing</b><small>A decade with SF families</small></a></li></ul></li>
-      <li class="has"><a class="dd-link" href="families.html">For families</a><button class="dd-btn" type="button" aria-expanded="false" aria-controls="dd-for-families" aria-label="Show For families pages"><svg width="10" height="10" viewBox="0 0 10 10" aria-hidden="true"><path d="M1.5 3.5 5 7l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></button><ul class="dd" id="dd-for-families"><li><a href="families.html"><b>Overview</b><small>Everything for families in one place</small></a></li><li><a href="glossary.html"><b>Getting involved at school</b><small>Plain answers for new parents</small></a></li><li><a href="resources.html"><b>Resources for SF families</b><small>Crisis lines, immigration, food, enrollment</small></a></li><li><a href="toolkit.html"><b>Family meeting toolkit</b><small>Printable guides for meetings</small></a></li></ul></li>
-    </ul>
-    </nav>
-  </div>
-</header>
-<script>
-(function(){
-  var nav=document.querySelector('.main-nav'); if(!nav) return;
-  var btns=nav.querySelectorAll('.dd-btn'), tog=nav.querySelector('.menu-toggle');
-  function closeAll(except){ btns.forEach(function(b){ if(b!==except){ b.setAttribute('aria-expanded','false'); b.parentNode.classList.remove('open'); } }); }
-  btns.forEach(function(b){ b.addEventListener('click',function(){
-    var li=b.parentNode; if(li.dataset.hov){ delete li.dataset.hov; return; }
-    var o=b.getAttribute('aria-expanded')==='true'; closeAll(b);
-    b.setAttribute('aria-expanded',String(!o)); b.parentNode.classList.toggle('open',!o); }); });
-  tog.addEventListener('click',function(){ var o=tog.getAttribute('aria-expanded')==='true';
-    tog.setAttribute('aria-expanded',String(!o)); document.documentElement.classList.toggle('menu-open',!o); });
-  document.addEventListener('click',function(e){ if(!nav.contains(e.target)) closeAll(); });
-  // Hover on computers: open right away, close after a short pause so the mouse can travel to the panel
-  if(window.matchMedia('(hover: hover)').matches){
-    nav.querySelectorAll('.has').forEach(function(li){
-      var t, b=li.querySelector('.dd-btn');
-      li.addEventListener('mouseenter',function(){ if(window.innerWidth<761) return; clearTimeout(t); closeAll(b); if(!li.classList.contains('open')) li.dataset.hov='1'; b.setAttribute('aria-expanded','true'); li.classList.add('open'); });
-      li.addEventListener('mouseleave',function(){ if(window.innerWidth<761) return; delete li.dataset.hov; t=setTimeout(function(){ b.setAttribute('aria-expanded','false'); li.classList.remove('open'); },350); });
-    });
-  }
-  document.addEventListener('keydown',function(e){ if(e.key==='Escape'){ var open=nav.querySelector('.has.open .dd-btn'); closeAll();
-    if(document.documentElement.classList.contains('menu-open')){ document.documentElement.classList.remove('menu-open'); tog.setAttribute('aria-expanded','false'); tog.focus(); } else if(open) open.focus(); } });
-})();
-</script>
+<!-- title:Anna Danielson|desc:Anna Danielson studies sociology, child development, and education in San Francisco, with a focus on kids, families, and public schools. -->
 <section class="hero" aria-labelledby="hero-title">
   <div class="wrap">
     <img class="hero-mark" src="assets/mark-lockup-animated.svg" alt="" width="180" height="180">
@@ -75,14 +10,14 @@
   </div>
 </section>
 
-<main id="main">  <section class="beliefs" aria-labelledby="beliefs">
+<main id="main">  <section class="beliefs" aria-labelledby="questions">
     <div class="wrap">
-      <p class="eyebrow">What I believe</p>
-      <h2 id="beliefs" class="sr-only">What I believe</h2>
+      <p class="eyebrow">Questions I&rsquo;m working on</p>
+      <h2 id="questions" class="sr-only">Questions I&rsquo;m working on</h2>
       <ul class="belief-list">
-        <li><svg class="b-leaf" viewBox="-10 -32 20 34" width="14" height="24" aria-hidden="true"><path d="M0 0 C-8 -8 -8 -22 0 -30 C8 -22 8 -8 0 0 Z" fill="#FF4F9A"/></svg><p>Quality public education is a right, not a privilege, and its absence leaves marks.</p></li>
-        <li><svg class="b-leaf" viewBox="-10 -32 20 34" width="14" height="24" aria-hidden="true"><path d="M0 0 C-8 -8 -8 -22 0 -30 C8 -22 8 -8 0 0 Z" fill="#2EC4B6"/></svg><p>Families are a child&rsquo;s first and most enduring teachers, and my role is to build on what they have already started.</p></li>
-        <li><svg class="b-leaf" viewBox="-10 -32 20 34" width="14" height="24" aria-hidden="true"><path d="M0 0 C-8 -8 -8 -22 0 -30 C8 -22 8 -8 0 0 Z" fill="#FFD23F"/></svg><p>Culture is not an add-on: it is the operating system through which students process new learning.</p></li>
+        <li><svg class="b-leaf" viewBox="-10 -32 20 34" width="14" height="24" aria-hidden="true"><path d="M0 0 C-8 -8 -8 -22 0 -30 C8 -22 8 -8 0 0 Z" fill="#FF4F9A"/></svg><p><a href="who-gets-a-say.html">Who gets a say?</a> Families at my kids&rsquo; school are invited to the meetings where budgets and plans get decided. What separates being consulted from having a say?</p></li>
+        <li><svg class="b-leaf" viewBox="-10 -32 20 34" width="14" height="24" aria-hidden="true"><path d="M0 0 C-8 -8 -8 -22 0 -30 C8 -22 8 -8 0 0 Z" fill="#2EC4B6"/></svg><p><a href="kids-places.html">Where do kids get to just exist?</a> Public money pays for programs and supervision. Parents I talk to ask for safe streets and green space. Where does a kid go when no adult has planned anything for them?</p></li>
+        <li><svg class="b-leaf" viewBox="-10 -32 20 34" width="14" height="24" aria-hidden="true"><path d="M0 0 C-8 -8 -8 -22 0 -30 C8 -22 8 -8 0 0 Z" fill="#FFD23F"/></svg><p><a href="about.html">What does freedom need?</a> I grew up homeschooled, free to follow my interests but less free to question what I was told. That tension still shapes how I think about education.</p></li>
       </ul>
       <p class="read-full"><a href="philosophy.html">My philosophy of education &rarr;</a></p>
     </div>
@@ -105,12 +40,6 @@
             <img class="photo-leaves" src="assets/photo-leaves.svg" alt="" aria-hidden="true">
           </div>
         </div>
-      </div>
-      <div class="stats-row">
-        <div><b class="pink">12</b><span>years raising my own kids, at home and in public school</span></div>
-        <div><b class="teal">2015</b><span>the year our play group began exploring nature every week</span></div>
-        <div><b class="pink">100s</b><span>of families taught safe babywearing as a certified educator</span></div>
-        <div><b class="teal">1,000+</b><span>volunteer hours with schools, food access, and families</span></div>
       </div>
       <div class="open-banner" id="open-to-work">
         <div>
@@ -143,7 +72,7 @@
         <article class="wk-c c-navy">
           <p class="wq-th">Work</p>
           <h3><a href="work.html">Research and design</a></h3>
-          <p class="wk-d">Who gets a say in school decisions, third places on Ocean Avenue, where kids get to just exist, and design for schools and community.</p>
+          <p class="wk-d">Fieldwork in my own neighborhoods and my kids&rsquo; schools, plus design for a school, a coalition, and a mixtape.</p>
           <ul>
             <li><a href="research.html">Research</a></li>
             <li><a href="design.html">Design</a></li>
@@ -153,7 +82,7 @@
         <article class="wk-c c-pink">
           <p class="wq-th">About</p>
           <h3><a href="about.html">Where I stand</a></h3>
-          <p class="wk-d">Starting from what kids bring, building trust, and treating families as partners. Plus a decade of organizing with SF families.</p>
+          <p class="wk-d">Where I stand and where it comes from, from a homeschool kitchen table in Ohio to a decade of organizing with SF families.</p>
           <ul>
             <li><a href="philosophy.html">Philosophy of education</a></li>
             <li><a href="community.html">Community organizing</a></li>
@@ -226,28 +155,3 @@
     </div>
   </section>
 </main>
-<footer class="site-footer footer-signoff" id="contact">
-  <div class="footer-fan" aria-hidden="true"><img src="assets/footer-fan.svg" alt="" width="120" height="64"></div>
-  <div class="wrap footer-center">
-    <img class="footer-mark" src="assets/mark-small.svg" alt="" width="72" height="72">
-    <p class="wordmark footer-name">Anna <span class="dot">&bull;</span> Danielson</p>
-    <p class="footer-tag">Sociology &bull; Child Development &bull; Education</p>
-    <a class="open-chip" href="index.html#open-to-work"><i></i>Open to work</a>
-    <p class="social">
-        <a href="https://www.linkedin.com/in/anna-danielson" aria-label="LinkedIn">
-          <svg viewBox="0 0 24 24" width="28" height="28" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="3" fill="currentColor"/><circle cx="7.5" cy="7.6" r="1.6" fill="#120C2E"/><rect x="6.1" y="10" width="2.8" height="8" fill="#120C2E"/><path d="M11 10h2.7v1.2c.5-.8 1.5-1.4 2.8-1.4 2.2 0 3 1.4 3 3.7V18h-2.8v-4c0-1.1-.3-1.9-1.4-1.9s-1.6.8-1.6 1.9v4H11z" fill="#120C2E"/></svg>
-        </a>
-        <a href="https://www.instagram.com/annadanielson.sf/" aria-label="Instagram">
-          <svg viewBox="0 0 24 24" width="28" height="28" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.3" cy="6.7" r="1.2" fill="currentColor"/></svg>
-        </a>
-        <a href="mailto:annajhoop@gmail.com" aria-label="Email">
-          <svg viewBox="0 0 24 24" width="28" height="28" aria-hidden="true"><rect x="2.5" y="5" width="19" height="14" rx="2.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M3.5 7l8.5 6.2L20.5 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </a>
-    </p>
-    <p class="small land">I live and work on the unceded homeland of the Ramaytush Ohlone,<br>the original peoples of the San Francisco Peninsula.</p>
-    <p class="small land-links"><a href="https://www.ramaytush.org/">Association of Ramaytush Ohlone</a> &middot; <a href="https://ramaytush.kindful.com/?campaign=1199658">Yunakin Land Tax</a> &middot; <a href="https://sogoreate-landtrust.org/">Sogorea Te&rsquo; Land Trust</a> &middot; <a href="https://sogoreate-landtrust.org/shuumi-land-tax/">Shuumi Land Tax</a></p>
-    <p class="small">San Francisco &nbsp;&middot;&nbsp; &copy; 2026 Anna Danielson</p>
-  </div>
-</footer>
-</body>
-</html>
